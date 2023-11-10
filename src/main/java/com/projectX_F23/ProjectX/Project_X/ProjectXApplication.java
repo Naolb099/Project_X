@@ -1,4 +1,4 @@
-package com.projectX_F23.ProjectX;
+package com.projectX_F23.ProjectX.Project_X;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,19 +15,16 @@ public class ProjectXApplication {
 
 	@GetMapping("/")
 	public String apiRoot() {
-		return "This is a test!";
+		return "This is a homepage test";
 	}
 
-
-	@GetMapping("/")
+	@GetMapping("/another")
 	public String apiRoot1() {
-		return "This is a test!";
+		return "This is another page";
 	}
 
-
-	@GetMapping("/")
+	@GetMapping("/yetanother")
 	public String apiRoot2() {
-		return "This is a test!";
+		return "Yet another page";
 	}
-
 }

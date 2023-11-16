@@ -25,6 +25,6 @@ public class ProjectXApplication {
 
 	@GetMapping("/yetanother")
 	public String apiRoot2() {
-		return "Yet another page";
+		return "another page";
 	}
 }

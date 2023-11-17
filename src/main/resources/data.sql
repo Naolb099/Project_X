@@ -1,5 +1,20 @@
-INSERT INTO student (id, name, passport_number) VALUES (1, 'John Doe', 'A12345678');
-INSERT INTO student (id, name, passport_number) VALUES (2, 'Emily Smith', 'B23456789');
-INSERT INTO student (id, name, passport_number) VALUES (3, 'Michael Johnson', 'C34567890');
-INSERT INTO student (id, name, passport_number) VALUES (4, 'Sara Lee', 'D45678901');
-INSERT INTO student (id, name, passport_number) VALUES (5, 'David Brown', 'E56789012');
+INSERT INTO users (email, username, password, verified, role, profileInfo) VALUES
+                                                                               ('john.doe@example.com', 'johndoe', 'hashedpassword1', true, 'USER', 'Information about John'),
+                                                                               ('naol.doe@example.com', 'janedoe', 'hashedpassword2', false, 'ADMIN', 'Information about Jane');
+INSERT INTO posts (userId, title, content, postDate, tags) VALUES
+                                                               (1, 'First Post', 'Content of the first post', CURRENT_TIMESTAMP, 'tag1, tag2'),
+                                                               (2, 'Second Post', 'Content of the second post', CURRENT_TIMESTAMP, 'tag3, tag4');
+INSERT INTO comments (userId, postId, content, commentDate) VALUES
+                                                                (2, 1, 'This is a comment on the first post', CURRENT_TIMESTAMP),
+                                                                (1, 2, 'This is a comment on the second post', CURRENT_TIMESTAMP);
+INSERT INTO votes (userId, postId, commentId, type) VALUES
+                                                        (1, 1, null, 'UPVOTE'),
+                                                        (2, 1, null, 'DOWNVOTE'),
+                                                        (1, null, 1, 'UPVOTE');
+INSERT INTO votes (userId, postId, commentId, type) VALUES
+                                                        (1, 1, null, 'UPVOTE'),
+                                                        (2, 1, null, 'DOWNVOTE'),
+                                                        (1, null, 1, 'UPVOTE');
+INSERT INTO post_trackers (postId, upvoteCount, downvoteCount) VALUES
+                                                                   (1, 10, 2),
+                                                                   (2, 5, 3);

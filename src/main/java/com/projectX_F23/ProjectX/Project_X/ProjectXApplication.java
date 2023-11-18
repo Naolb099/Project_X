@@ -2,6 +2,7 @@ package com.projectX_F23.ProjectX.Project_X;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,8 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProjectXApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(ProjectXApplication.class, args);
 	}
+
 
 	@GetMapping("/")
 	public String apiRoot() {

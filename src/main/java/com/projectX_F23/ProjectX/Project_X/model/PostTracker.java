@@ -1,4 +1,4 @@
-package model;
+package com.projectX_F23.ProjectX.Project_X.model;
 
 public class PostTracker {
     private Long postTrackerId;

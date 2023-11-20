@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Sign Up</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/signup.css}">
 </head>
 <body>
-
+<div class="container">
+    <div class="text-center mb-4">
+        <h2>ProjectX</h2>
+        <h6 class="text-muted">Sign up to see posts from your friends.</h6>
+    </div>
+    <div class="form-divider d-flex align-items-center">
+        <div></div>
+    </div>
+    <form th:action="@{/signup}" th:object="${user}" method="post">
+        <input type="text" th:field="*{email}" class="form-control" placeholder="Email">
+        <input type="text" th:field="*{username}" class="form-control" placeholder="Username">
+        <input type="password" th:field="*{password}" class="form-control" placeholder="Password">
+        <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+    </form>
+</div>
+<div class="text-center signup-footer">
+    <p>Have an account? <a th:href="@{/login}">Log in</a></p>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

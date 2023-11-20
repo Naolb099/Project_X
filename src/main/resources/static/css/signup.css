@@ -1,0 +1,46 @@
+body {
+    background-color: #fafafa;
+}
+.container {
+    max-width: 350px;
+    margin-top: 50px;
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #dbdbdb;
+    border-radius: 1px;
+    box-shadow: 0px 0px 10px 0px rgba(219,219,219,1);
+}
+.form-control {
+    margin-bottom: 10px;
+}
+.form-text {
+    margin-bottom: 10px;
+    font-size: 12px;
+    text-align: center;
+}
+.form-divider {
+    text-align: center;
+    margin: 20px 0;
+}
+.form-divider:before,
+.form-divider:after {
+    content: "";
+    flex: 1;
+    background: #dbdbdb;
+    height: 1px;
+    margin: .25rem;
+}
+.form-divider:after {
+    background-image: linear-gradient(to right, #dbdbdb, rgba(255, 255, 255, 0));
+}
+.form-divider:before {
+    background-image: linear-gradient(to left, #dbdbdb, rgba(255, 255, 255, 0));
+}
+.btn-facebook {
+    background-color: #3b5998;
+    color: white;
+}
+.signup-footer {
+    text-align: center;
+    margin-top: 20px;
+}

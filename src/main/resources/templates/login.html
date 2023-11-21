@@ -4,9 +4,14 @@
     <title>Sign In</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/signup.css}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <div class="container">
+    <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+    <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
     <div class="text-center mb-4">
         <h2>ProjectX</h2>
         <h6 class="text-muted">Sign in to see posts from your friends.</h6>
@@ -24,10 +29,10 @@
             <label for="exampleInputPassword1">Password</label>
             <input type="password" th:field="*{password}" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
-        <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
+<!--        <div class="form-group form-check">-->
+<!--            <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+<!--            <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
+<!--        </div>-->
         <button type="submit" class="btn btn-primary">Sign In</button>
     </form>
 </div>

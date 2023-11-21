@@ -8,14 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @Controller
-public class SignInController {
+public class LogInController {
 
     private final UserRepository userRepository;
 
     @Autowired
-    public SignInController(UserRepository userRepository) {
+    public LogInController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -33,8 +35,11 @@ public class SignInController {
             // Passwords match, user is authenticated
             return "redirect:/dashboard";
         } else {
+            redirectAttrs.addFlashAttribute("error", "The error XYZ occurred.");
             // Passwords do not match or user not found
             model.addAttribute("error", "Invalid username or password");
+            // Return the same login page with the error message
+            model.addAttribute("user", new User()); // Add this line to ensure the form is populated with the user object
             return "login";
         }
     }

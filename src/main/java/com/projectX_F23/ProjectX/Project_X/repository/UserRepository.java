@@ -17,6 +17,19 @@ public class UserRepository {
         jdbcTemplate.update(sql, user.getEmail(), user.getUsername(), user.getPassword(), user.getVerified(), user.getRole(), user.getProfileInfo());
     }
 
+    public User findByUsername(String username) {
+        String sql = "SELECT * FROM users WHERE username = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{username}, (resultSet, rowNum) ->
+                new User(
+                        resultSet.getLong("id"),
+                        resultSet.getString("email"),
+                        resultSet.getString("username"),
+                        resultSet.getString("password"),
+                        resultSet.getBoolean("verified"),
+                        resultSet.getString("role"),
+                        resultSet.getString("profileInfo")
+                ));
+    }
     // Other database operations methods
     // ...
 }

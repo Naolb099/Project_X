@@ -34,8 +34,8 @@ public class LogInController {
         if (existingUser != null && existingUser.getPassword().equals(user.getPassword())) {
             // Passwords match, user is authenticated
             return "redirect:/dashboard";
-        } else {
-            redirectAttrs.addFlashAttribute("error", "The error XYZ occurred.");
+         } else {
+//            redirectAttrs.addFlashAttribute("error", "The error XYZ occurred.");
             // Passwords do not match or user not found
             model.addAttribute("error", "Invalid username or password");
             // Return the same login page with the error message

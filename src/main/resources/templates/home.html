@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>ProjectX</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
+    <!-- navbar -->
+    <nav class="navbar">
+        <!-- LOGO -->
+        <div class="logo">ProjectX</div>
+
+        <!-- NAVIGATION MENU -->
+        <ul class="nav-links">
+
+            <!-- NAVIGATION MENUS -->
+            <div class="menu">
+
+                <li><a href="/">Home</a></li>
+                <li><a href="/">About</a></li>
+
+                <li class="services">
+                    <button class="avatar" id ="dropdown-toggle"></button>
+                    <!-- DROPDOWN MENU -->
+                    <ul class="dropdown">
+                        <li><a href="/">Profile</a></li>
+                        <li><a href="/">update password</a></li>
+                        <li><a href="/">Dropdown 2</a></li>
+                        <li><a href="/">Dropdown 3</a></li>
+                        <li><a href="/">Dropdown 4</a></li>
+                    </ul>
+
+                </li>
+            </div>
+        </ul>
+    </nav>
+
+
+    <!-- post-form -->
+    <div class="container">
+        <div class="wrapper">
+            <form action="#">
+                <textarea placeholder="What's on your mind?" spellcheck="false" required></textarea>
+                <button>Post</button>
+            </form>
+        </div>
+    </div>
+
+    <script th:src="@{/js/home.js}"></script>
 
 </body>
+
 </html>

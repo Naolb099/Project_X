@@ -16,13 +16,13 @@
 <div class="container mt-5">
     <h2>User Settings</h2>
 
-    <form th:action="@{/usersettings}" method="post">
+    <form th:action="@{/usersettings}" method="post" th:object="${user}">
 
         <!-- Username -->
         <div class="form-group">
             <label for="username">Username</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="username" name="username" readonly>
+                <input th:field="*{username}" type="text" class="form-control" id="username" name="username" readonly>
                 <div class="input-group-append">
                     <button type="button" class="btn btn-secondary" onclick="enableField('username')">Edit</button>
                 </div>
@@ -32,14 +32,14 @@
         <!-- Email -->
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" readonly>
+            <input th:field="*{email}" type="email" class="form-control" id="email" name="email" readonly>
         </div>
 
         <!-- Password -->
         <div class="form-group">
             <label for="password">Password</label>
             <div class="input-group">
-                <input type="password" class="form-control" id="password" name="password" readonly>
+                <input th:field="*{password}" type="password" class="form-control" id="password" name="password" readonly>
                 <div class="input-group-append">
                     <button type="button" class="btn btn-secondary" onclick="enableField('password')">Edit</button>
                 </div>
@@ -50,7 +50,7 @@
 <!--        <div class="form-group" th:if="${#fields.hasErrors('password')}"> -->
         <div class="form-group">
             <label for="confirmPassword">Confirm Password</label>
-            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" readonly>
+            <input th:field="*{password}" type="password" class="form-control" id="confirmPassword" name="confirmPassword" readonly>
         </div>
 
         <button type="submit" class="btn btn-primary">Save Changes</button>

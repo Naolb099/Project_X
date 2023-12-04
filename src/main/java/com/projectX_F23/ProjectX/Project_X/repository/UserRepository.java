@@ -30,6 +30,22 @@ public class UserRepository {
                         resultSet.getString("profileInfo")
                 ));
     }
+
+    public User findByEmail(String email)
+
+    {
+        String sql = "SELECT * FROM users WHERE email = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{email}, (resultSet, rowNum) ->
+                new User(
+                        resultSet.getLong("id"),
+                        resultSet.getString("email"),
+                        resultSet.getString("username"),
+                        resultSet.getString("password"),
+                        resultSet.getBoolean("verified"),
+                        resultSet.getString("role"),
+                        resultSet.getString("profileInfo")
+                ));
+    }
     // Other database operations methods
     // ...
 }

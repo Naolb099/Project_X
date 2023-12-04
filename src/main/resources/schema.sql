@@ -14,7 +14,6 @@ CREATE TABLE IF NOT EXISTS posts (
                                      title VARCHAR(255),
                                      content VARCHAR(1000),
                                      postDate TIMESTAMP,
-                                     tags VARCHAR(255),
                                      FOREIGN KEY (userId) REFERENCES users(userId)
 );
 

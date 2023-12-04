@@ -1,221 +1,80 @@
-/* UTILITIES */
-* {
+html, body {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #f5f8fa;
+    color: #14171a;
 }
 
-body, html {
-    height: 200%;
-    margin: 0;
+#content {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-
-a {
-    text-decoration: none;
-}
-
-li {
-    list-style: none;
-    align-items: center;
-}
-
-
-/* NAVBAR STYLING STARTS */
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: rgb(35, 45, 63);
-    color: #fff;
-    position: fixed;
-    width: 100%;
+    background-color: #1da1f2;
+    padding: 10px 20px;
+    text-align: right;
+    color: white;
 }
 
-.nav-links a {
-    color: #fff;
+.navbar .nav-link, .navbar .nav-link i {
+    color: white;
 }
 
-/* LOGO */
-.logo {
-    font-size: 32px;
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 0;
 }
 
-
-
-
-/* NAVBAR MENU & links*/
-.menu {
-    display: flex;
-    margin-bottom: 0;
-    gap: 5em;
-    font-size: 18px;
-}
-
-.menu li:hover {
-    background-color: #4c9e9e;
-    border-radius: 5px;
-    transition: 0.3s ease;
-}
-
-
-.menu li {
-    position: relative;
-    padding: 5px 14px;
-}
-
-
-
-
-
-/* DROPDOWN MENU */
-.services {
-    position: relative;
-}
-
-.dropdown {
-    background-color: rgb(35, 45, 63);
-    padding: 1em 0;
-    position: absolute; /*WITH RESPECT TO PARENT*/
-    display: none;
-    border-radius: 8px;
-    top: 35px;
-    right: 10px;
-}
-
-.dropdown li + li {
-    margin-top: 10px;
-}
-
-.dropdown li {
-    padding: 0.5em 1em;
-    width: 8em;
-    text-align: center;
-}
-
-.dropdown {
-    display: none;
-}
-
-.avatar {
-    position: relative;
-    top: -6px;
-    height: 40px;
-    width: 40px;
-    background: url('https://s.gravatar.com/avatar/353ffe54135685e371ae6add43986f92?d=mm') center/cover;
-    margin: 0 2rem;
-    border-radius: 50%;
-    border: none;
-    padding: none;
-    cursor: pointer;
-}
-
-/* Nav bar end */
-
-
-/* post begins */
-
-.container
-{
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-bottom: 20px;
+.form-post {
+    background-color: #fff;
+    border: 1px solid #e1e8ed;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
 }
 
 .post {
-    text-align: center;
+    background-color: #fff;
+    border: 1px solid #e1e8ed;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
 }
 
-.container.active{
-    height: 590px;
+.post-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
 }
 
-.container .wrapper{
-    width: 500px;
-    align-items: center;
-    position: fixed;
-    left: 40%;
-    bottom: 0;
-    padding: 10px;
+.post-body {
+    font-size: 1rem;
+    margin-bottom: 1rem;
 }
 
-
-.container .post{
-    transition: margin-left 0.18s ease;
-}
-.container.active .post{
-    margin-left: -500px;
-}
-.post header{
-    font-size: 22px;
-    font-weight: 600;
-    padding: 17px 0;
-    text-align: center;
-    border-bottom: 1px solid #bfbfbf;
-}
-
-.post form{
-    margin: 20px 25px;
-}
-
-
-form {
+.post-interactions, .post-footer {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    width:50%;
+    font-size: 0.875rem;
+    color: #657786;
 }
 
-
-form textarea{
-    resize: none;
-    font-size: 13px;
-    margin-top: 30px;
-    margin-bottom: 10px;
-    min-height: 100px;
-    width: 100%;
-    border-radius: 7px;
-    text-indent: 0.5rem;
+.votes span {
+    margin: 0 5px;
 }
 
-form :where(textarea, button){
-    width: 30%;
-    outline: none;
-}
-
-form textarea::placeholder{
-    color: #858585;
-}
-form textarea:focus::placeholder{
-    color: #b3b3b3;
-}
-
-/* button */
-form button{
-    height: 53px;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 500;
+.votes button, .post-footer button {
+    border: none;
+    background: none;
     cursor: pointer;
-    color: #BCC0C4;
-    cursor: no-drop;
-    border-radius: 7px;
-    background: #e2e5e9;
-    transition: all 0.3s ease;
-}
-form textarea:valid ~ button{
-    color: #fff;
-    cursor: pointer;
-    background: #4599FF;
-}
-form textarea:valid ~ button:hover{
-    background: #1a81ff;
+    color: #1da1f2;
 }
 
+.btn-primary {
+    background-color: #1da1f2;
+    border-color: #1da1f2;
+}

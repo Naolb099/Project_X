@@ -1,55 +1,45 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ProjectX</title>
-    <link rel="stylesheet" th:href="@{/css/home.css}">
-    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}"/>
-
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.8.1/css/all.css}" />
 </head>
 <body>
-    <!-- navbar -->
-    <nav class="navbar">
-        <!-- LOGO -->
-        <div class="logo">ProjectX</div>
-
-        <!-- NAVIGATION MENU -->
-        <ul class="nav-links">
-
-            <!-- NAVIGATION MENUS -->
-            <div class="menu">
-
-                <li><a href="/">Home</a></li>
-                <li><a href="/">About</a></li>
-
-                <li class="services">
-                    <button class="avatar" id ="dropdown-toggle"></button>
-                    <!-- DROPDOWN MENU -->
-                    <ul class="dropdown">
-                        <li><a href="/">Profile</a></li>
-                        <li><a href="/">update password</a></li>
-                        <li><a href="/">Dropdown 2</a></li>
-                        <li><a href="/">Dropdown 3</a></li>
-                        <li><a href="/">Dropdown 4</a></li>
-                    </ul>
-
-                </li>
-            </div>
-        </ul>
-    </nav>
-
-
-    <!-- post-form -->
-    <div class="container">
-        <div class="wrapper">
-            <form action="#">
-                <textarea placeholder="What's on your mind?" spellcheck="false" required></textarea>
-                <button>Post</button>
-            </form>
-        </div>
+<div id="content">
+    <div class="navbar">
+        <a href="#" class="nav-link"><i class="fas fa-home"></i> Home</a>
+        <span class="user-icon"><i class="fas fa-user"></i></span>
     </div>
 
-    <script th:src="@{/js/home.js}"></script>
+    <div class="container">
+        <div class="form-post">
+            <form id="postForm" th:action="@{/post}" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="postTitle" placeholder="Enter post title" required>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="postBody" rows="3" placeholder="What's on your mind?" required></textarea>
+                </div>
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary">Post</button>
+                </div>
+            </form>
+        </div>
 
+        <div th:each="post : ${posts}">
+            <div class="post">
+                <div class="post-title" th:text="${post.title}">Post Title</div>
+                <div class="post-body" th:text="${post.body}">Post Body</div>
+                <div class="post-interactions">
+                    <!-- Interactions -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
-
 </html>

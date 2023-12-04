@@ -1,7 +1,7 @@
 package com.projectX_F23.ProjectX.Project_X.model;
 
 public class User {
-    private Long userId;
+    private Long id;
     private String email;
     private String username;
     private String password;
@@ -15,7 +15,7 @@ public class User {
 
     // All-args constructor
     public User(Long userId, String email, String username, String password, Boolean verified, String role, String profileInfo) {
-        this.userId = userId;
+        this.id = userId;
         this.email = email;
         this.username = username;
         this.password = password;
@@ -25,8 +25,8 @@ public class User {
     }
 
     // Getters
-    public Long getUserId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
 
     public String getEmail() {
@@ -54,8 +54,8 @@ public class User {
     }
 
     // Setters
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setEmail(String email) {

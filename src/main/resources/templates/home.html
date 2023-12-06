@@ -16,10 +16,11 @@
         <a href="#" th:href="@{/createPost}" class="nav-link"><i class="fas fa-edit"></i> Create Post</a>
         <span class="user-icon">
         <i class="fas fa-user"></i>
-        <span th:text="${loggedInUser != null ? loggedInUser.username : 'Guest'}">
+        <span th:text="${loggedInUser != null ? loggedInUser.username : 'Guest'}"></span>
         </span>
 <!--        <span class="user-icon"><i class="fas fa-user"></i></span>-->
     </div>
+
 
     <div class="container" style="max-width: 600px">
         <h4>Recent Posts</h4>

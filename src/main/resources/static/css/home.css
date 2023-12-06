@@ -23,10 +23,13 @@ html, body {
 }
 
 .container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 0;
+    max-width: 600px !important;
+    margin: 20px auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
 }
+
+
 
 .form-post {
     background-color: #fff;

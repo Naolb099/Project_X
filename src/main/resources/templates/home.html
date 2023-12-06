@@ -11,25 +11,34 @@
 <body>
 <div id="content">
     <div class="navbar">
-        <a href="#" class="nav-link"><i class="fas fa-home"></i> Home</a>
-        <span class="user-icon"><i class="fas fa-user"></i></span>
+        <a href="#" th:href="@{/home}" class="nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="#" th:href="@{/createPost}" class="nav-link"><i class="fas fa-edit"></i> Create Post</a>
+        <span class="user-icon">
+        <i class="fas fa-user"></i>
+        <span th:text="${user != null ? user.username : 'Guest'}"></span>
+        </span>
+<!--        <span class="user-icon"><i class="fas fa-user"></i></span>-->
+    </div>
+
+    <div class="container" style="max-width: 600px">
+        <h4>Recent Posts</h4>
+        <div th:each="i : ${#numbers.sequence(1, 3)}" class="post">
+            <div class="post-title">Dummy Post Title <span th:text="${i}"></span></div>
+            <div class="post-body">
+                This is the body of dummy post <span th:text="${i}"></span>. It has some text here to simulate an actual post.
+            </div>
+            <div class="post-footer">
+            <span class="vote">
+                <i class="fas fa-arrow-up"></i>
+                <span class="vote-count"></span>
+                <i class="fas fa-arrow-down"></i>
+            </span>
+                <i class="fas fa-comment comment-icon"></i>
+            </div>
+        </div>
     </div>
 
     <div class="container">
-        <div class="form-post">
-            <form id="postForm" th:action="@{/post}" method="post">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="postTitle" name="title" placeholder="Enter post title" required>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" id="postBody" name="content" rows="3" placeholder="What's on your mind?" required></textarea>
-                </div>
-                <div class="form-group text-right">
-                    <button type="submit" class="btn btn-primary">Post</button>
-                </div>
-            </form>
-        </div>
-
         <div th:each="post : ${posts}">
             <div class="post">
                 <div class="post-title" th:text="${post.title}">Post Title</div>

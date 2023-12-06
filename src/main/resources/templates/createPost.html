@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProjectX</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.8.1/css/all.css}" />
+</head>
+<body>
+<div id="content">
+    <div class="navbar">
+        <a href="#" th:href="@{/home}" class="nav-link"><i class="fas fa-home"></i> Home</a>
+        <span class="user-icon">
+        <i class="fas fa-user"></i>
+        <span th:text="${user != null ? user.username : 'Guest'}"></span>
+        </span>
+    </div>
+
+    <div class="container" style="max-width: 600px">
+        <div class="form-post">
+            <form id="postForm" th:action="@{/post}" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="postTitle" name="title" placeholder="Enter post title" required>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="postBody" name="content" rows="3" placeholder="What's on your mind?" required></textarea>
+                </div>
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary">Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

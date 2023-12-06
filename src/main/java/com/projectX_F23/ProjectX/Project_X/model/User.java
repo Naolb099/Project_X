@@ -9,6 +9,8 @@ public class User {
     private String role;
     private String profileInfo;
 
+    private String confirmPassword;
+
     // No-arg constructor
     public User() {
     }
@@ -25,6 +27,11 @@ public class User {
     }
 
     // Getters
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
     public Long getId() {
         return id;
     }
@@ -54,6 +61,10 @@ public class User {
     }
 
     // Setters
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
     public void setId(Long id) {
         this.id = id;
     }

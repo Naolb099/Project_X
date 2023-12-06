@@ -60,7 +60,7 @@ public class ProjectXApplication {
 
 	@GetMapping("/")
 	public String apiRoot(Model model) {
-		return "redirect:/signup";
+		return "redirect:/login";
 	}
 
 }

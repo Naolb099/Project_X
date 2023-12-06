@@ -50,7 +50,7 @@ public class UserSettingsController {
                              @RequestParam(name = "logOut", required = false) String logOut,
                              @RequestParam(name = "deleteAccount", required = false) String deleteAccount,
                              HttpSession session,
-                             RedirectAttributes redirectAttributes) {
+                             RedirectAttributes redirectAttributes, Model model) {
 
         try {
             User currentUser = (User) session.getAttribute("loggedInUser");
@@ -59,11 +59,9 @@ public class UserSettingsController {
                 // Redirect to the login page if the user is not logged in
                 return "redirect:/login";
             }
+
         if (saveChanges != null) {
             // Save Changes button was pressed
-            // ... your existing code ...
-            // Save Changes button was pressed
-
             // Update user information
             currentUser.setUsername(user.getUsername());
             currentUser.setPassword(user.getPassword());
@@ -77,18 +75,20 @@ public class UserSettingsController {
             // Update the user in the session
             session.setAttribute("loggedInUser", currentUser);
 
-            // Redirect with a success message
+            /// Redirect with a success message
             redirectAttributes.addFlashAttribute("successMessage", "User information updated successfully!");
+
+            // Use a redirect to prevent the flash attributes from being cleared
+            return "redirect:/usersettings";
+
         } else if (logOut != null) {
             // Log Out button was pressed
-            // ... your existing code ...
+
             session.invalidate();
 
             // Redirect to the login page after logging out
             return "redirect:/login";
         } else if (deleteAccount != null) {
-            // Delete Account button was pressed
-            // ... your existing code ...
             // Delete Account button was pressed
 
             // Use the UserRepository to delete the user from the database
@@ -97,6 +97,7 @@ public class UserSettingsController {
             // Invalidate the session after deleting the account
             session.invalidate();
 
+            redirectAttributes.addFlashAttribute("successMessage", "Account deleted successfully!");
             // Redirect to the home page or login page after deleting the account
             return "redirect:/login"; // Adjust the redirection URL as needed for your application
         }
@@ -111,14 +112,4 @@ public class UserSettingsController {
         return "redirect:/usersettings";
     }
 
-    private User getCurrentUser() {
-        User user = new User();
-        user.setUsername("dylanleehilger");
-        user.setEmail("dylan.hilger@trojans.dsu.edu");
-        user.setPassword("Password1!");
-        user.setVerified(Boolean.TRUE);
-        user.setRole("USER");
-        user.setProfileInfo("This is a test");
-        return user;
-    }
 }

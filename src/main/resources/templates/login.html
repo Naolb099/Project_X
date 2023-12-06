@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Sign In</title>
+    <title>Log In</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/signup.css}">
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}"/>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <body>
 <div class="container">
@@ -14,12 +17,12 @@
     <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
     <div class="text-center mb-4">
         <h2>ProjectX</h2>
-        <h6 class="text-muted">Sign in to see posts from your friends.</h6>
+        <h6 class="text-muted">Log In to see posts from your friends.</h6>
     </div>
     <div class="form-divider d-flex align-items-center">
         <div></div>
     </div>
-    <form th:action="@{/signin}" th:object="${user}" method="post">
+    <form th:action="@{/login}" th:object="${user}" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input type="email" th:field="*{email}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -33,7 +36,7 @@
 <!--            <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
 <!--            <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
 <!--        </div>-->
-        <button type="submit" class="btn btn-primary">Sign In</button>
+        <button type="submit" class="btn btn-primary">Log In</button>
     </form>
 </div>
 <div class="text-center signup-footer">

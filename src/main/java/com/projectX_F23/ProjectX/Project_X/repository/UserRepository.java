@@ -21,7 +21,23 @@ public class UserRepository {
         String sql = "SELECT * FROM users WHERE username = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{username}, (resultSet, rowNum) ->
                 new User(
-                        resultSet.getLong("id"),
+                        resultSet.getLong("userId"),
+                        resultSet.getString("email"),
+                        resultSet.getString("username"),
+                        resultSet.getString("password"),
+                        resultSet.getBoolean("verified"),
+                        resultSet.getString("role"),
+                        resultSet.getString("profileInfo")
+                ));
+    }
+
+    public User findByEmail(String email)
+
+    {
+        String sql = "SELECT * FROM users WHERE email = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{email}, (resultSet, rowNum) ->
+                new User(
+                        resultSet.getLong("userId"),
                         resultSet.getString("email"),
                         resultSet.getString("username"),
                         resultSet.getString("password"),

@@ -31,6 +31,19 @@ public class UserRepository {
                 ));
     }
 
+    public void update(User user) {
+        String sql = "UPDATE users SET username = ?, password = ?, verified = ?, role = ?, profileInfo = ? WHERE email = ?";
+        jdbcTemplate.update(
+                sql,
+                user.getUsername(),
+                user.getPassword(),
+                user.getVerified(),
+                user.getRole(),
+                user.getProfileInfo(),
+                user.getEmail()
+        );
+    }
+
     public User findByEmail(String email)
 
     {

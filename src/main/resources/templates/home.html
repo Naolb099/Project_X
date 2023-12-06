@@ -11,14 +11,34 @@
 <body>
 
 <div id="content">
+<!--    <div class="navbar">-->
+<!--        <a href="#" th:href="@{/home}" class="nav-link"><i class="fas fa-home"></i> Home</a>-->
+<!--        <a href="#" th:href="@{/createPost}" class="nav-link"><i class="fas fa-edit"></i> Create Post</a>-->
+<!--        <span class="user-icon">-->
+<!--        <i class="fas fa-user"></i>-->
+<!--        <span th:text="${loggedInUser != null ? loggedInUser.username : 'Guest'}"></span>-->
+<!--        </span>-->
+<!--&lt;!&ndash;        <span class="user-icon"><i class="fas fa-user"></i></span>&ndash;&gt;-->
+<!--    </div>-->
     <div class="navbar">
         <a href="#" th:href="@{/home}" class="nav-link"><i class="fas fa-home"></i> Home</a>
         <a href="#" th:href="@{/createPost}" class="nav-link"><i class="fas fa-edit"></i> Create Post</a>
-        <span class="user-icon">
-        <i class="fas fa-user"></i>
-        <span th:text="${loggedInUser != null ? loggedInUser.username : 'Guest'}"></span>
-        </span>
-<!--        <span class="user-icon"><i class="fas fa-user"></i></span>-->
+        <div class="dropdown">
+            <button onclick="show_hide()" class="user-icon">
+                <i class="fas fa-user"></i>
+            </button>
+
+            <div id="list-items">
+                <a th:href="@{/home}"> Profile </a>
+                <a  th:href="@{/usersettings}"> Settings </a>
+                <a th:href="@{/home}"> Logout </a>
+            </div>
+            <span th:text="${loggedInUser != null ? loggedInUser.username : 'Guest'}"></span>
+
+<!--            <span class="user-icon">-->
+
+            </span>
+        </div>
     </div>
 
 
@@ -52,5 +72,7 @@
         </div>
     </div>
 </div>
+<script th:src="@{/js/home.js}"></script>
+
 </body>
 </html>

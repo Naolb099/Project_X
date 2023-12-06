@@ -29,6 +29,12 @@ public class LogInController {
         return "login";
     }
 
+    @PostMapping("/logout")
+    public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
+        session.invalidate();
+        redirectAttributes.addFlashAttribute("logoutMessage", "You have been successfully logged out.");
+        return "redirect:/login";
+    }
 
     @PostMapping("/login")
     public String loginUser(@ModelAttribute User user, Model model, RedirectAttributes redirectAttributes, HttpSession session) {

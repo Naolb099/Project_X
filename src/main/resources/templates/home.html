@@ -43,9 +43,24 @@
             </span>
         </div>
     </div>
-
+    <div class="container" style="max-width: 600px">
+        <div class="form-post">
+            <form id="postForm" th:action="@{/post}" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="postTitle" name="title" placeholder="Enter post title" required>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="postBody" name="content" rows="3" placeholder="What's on your mind?" required></textarea>
+                </div>
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary">Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <div class="container" style="max-width: 600px">
+
         <h4>Recent Posts</h4>
         <div th:each="i : ${#numbers.sequence(1, 3)}" class="post">
             <div class="post-title">Dummy Post Title <span th:text="${i}"></span></div>

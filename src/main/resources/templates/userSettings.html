@@ -37,7 +37,7 @@
 
         <!-- Password -->
         <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password"> Password</label>
             <div class="input-group">
                 <input th:field="*{password}" type="password" class="form-control" id="password" name="password" readonly>
                 <div class="input-group-append">
@@ -53,11 +53,11 @@
 <!--            <input th:field="*{confirmPassword}" type="password" class="form-control" id="confirmPassword" name="confirmPassword" readonly>-->
 <!--        </div>-->
 
-        <button type="submit" class="btn btn-primary" name="saveChanges">Save Changes</button>
+        <button type="submit" class="btn btn-primary" value="SaveChanges" name="saveChanges">Save Changes</button>
 
         <div class="text-center mt-5 mb-5">
-            <button type="submit" class="btn btn-secondary" name="logOut">Log Out</button>
-            <button type="submit" class="btn btn-danger" name="deleteAccount">Delete Account</button>
+            <button type="submit" class="btn btn-secondary" value="logOut" name="logOut">Log Out</button>
+            <button type="submit" class="btn btn-danger" value="deleteAccount" name="deleteAccount">Delete Account</button>
         </div>
     </form>
 

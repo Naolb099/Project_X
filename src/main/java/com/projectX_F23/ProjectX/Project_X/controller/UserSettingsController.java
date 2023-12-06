@@ -38,9 +38,64 @@ public class UserSettingsController {
         return "usersettings";
     }
 
+    //works---------------------------------------------------------- down
+//    @PostMapping("/usersettings")
+//    public String updateInfo(@ModelAttribute User user,
+//                             @RequestParam(name = "saveChanges", required = false) String saveChanges,
+//                             HttpSession session,
+//                             RedirectAttributes redirectAttributes) {
+//
+//        try {
+//            User currentUser = (User) session.getAttribute("loggedInUser");
+//
+//            if (currentUser == null) {
+//                // Redirect to the login page if the user is not logged in
+//                return "redirect:/login";
+//            }
+//
+//            if (saveChanges != null) {
+//                // Save Changes button was pressed
+//
+//                // Update user information
+//                currentUser.setUsername(user.getUsername());
+//                currentUser.setPassword(user.getPassword());
+//                currentUser.setVerified(user.getVerified());
+//                currentUser.setRole(user.getRole());
+//                currentUser.setProfileInfo(user.getProfileInfo());
+//
+//                // Use the UserRepository to update the user in the database
+//                userRepository.update(currentUser);
+//
+//                // Update the user in the session
+//                session.setAttribute("loggedInUser", currentUser);
+//
+//                // Redirect with a success message
+//                redirectAttributes.addFlashAttribute("successMessage", "User information updated successfully!");
+//            } else {
+//                // Handle other button actions (logOut, deleteAccount) if needed
+//            }
+//
+//        } catch (Exception e) {
+//            // Log the exception details
+//            e.printStackTrace(); // Use a logger for better logging in a real application
+//
+//            // Optionally, add an error message for the user
+//            redirectAttributes.addFlashAttribute("errorMessage", "An unexpected error occurred.");
+//        }
+//
+//        return "redirect:/usersettings";
+//    }
+
+
+    //works---------------------------------------------------------- up
+
+
+
     @PostMapping("/usersettings")
     public String updateInfo(@ModelAttribute User user,
                              @RequestParam(name = "saveChanges", required = false) String saveChanges,
+                             @RequestParam(name = "logOut", required = false) String logOut,
+                             @RequestParam(name = "deleteAccount", required = false) String deleteAccount,
                              HttpSession session,
                              RedirectAttributes redirectAttributes) {
 
@@ -51,29 +106,47 @@ public class UserSettingsController {
                 // Redirect to the login page if the user is not logged in
                 return "redirect:/login";
             }
+        if (saveChanges != null) {
+            // Save Changes button was pressed
+            // ... your existing code ...
+            // Save Changes button was pressed
 
-            if (saveChanges != null) {
-                // Save Changes button was pressed
+            // Update user information
+            currentUser.setUsername(user.getUsername());
+            currentUser.setPassword(user.getPassword());
+            currentUser.setVerified(user.getVerified());
+            currentUser.setRole(user.getRole());
+            currentUser.setProfileInfo(user.getProfileInfo());
 
-                // Update user information
-                currentUser.setUsername(user.getUsername());
-                currentUser.setPassword(user.getPassword());
-                currentUser.setVerified(user.getVerified());
-                currentUser.setRole(user.getRole());
-                currentUser.setProfileInfo(user.getProfileInfo());
+            // Use the UserRepository to update the user in the database
+            userRepository.update(currentUser);
 
-                // Use the UserRepository to update the user in the database
-                userRepository.update(currentUser);
+            // Update the user in the session
+            session.setAttribute("loggedInUser", currentUser);
 
-                // Update the user in the session
-                session.setAttribute("loggedInUser", currentUser);
+            // Redirect with a success message
+            redirectAttributes.addFlashAttribute("successMessage", "User information updated successfully!");
+        } else if (logOut != null) {
+            // Log Out button was pressed
+            // ... your existing code ...
+            session.invalidate();
 
-                // Redirect with a success message
-                redirectAttributes.addFlashAttribute("successMessage", "User information updated successfully!");
-            } else {
-                // Handle other button actions (logOut, deleteAccount) if needed
-            }
+            // Redirect to the login page after logging out
+            return "redirect:/login";
+        } else if (deleteAccount != null) {
+            // Delete Account button was pressed
+            // ... your existing code ...
+            // Delete Account button was pressed
 
+            // Use the UserRepository to delete the user from the database
+            userRepository.deleteByEmail(currentUser.getEmail());
+
+            // Invalidate the session after deleting the account
+            session.invalidate();
+
+            // Redirect to the home page or login page after deleting the account
+            return "redirect:/login"; // Adjust the redirection URL as needed for your application
+        }
         } catch (Exception e) {
             // Log the exception details
             e.printStackTrace(); // Use a logger for better logging in a real application
@@ -86,6 +159,113 @@ public class UserSettingsController {
     }
 
 
+//    @PostMapping("/usersettings")
+//    public String updateInfo(@ModelAttribute User user,
+//                             @RequestParam(name = "saveChanges", required = false) String saveChanges,
+//                             @RequestParam(name = "logOut", required = false) String logOut,
+//                             @RequestParam(name = "deleteAccount", required = false) String deleteAccount,
+//                             HttpSession session,
+//                             RedirectAttributes redirectAttributes) {
+//
+//        try {
+//            User currentUser = (User) session.getAttribute("loggedInUser");
+//
+//            if (currentUser == null) {
+//                // Redirect to the login page if the user is not logged in
+//                return "redirect:/login";
+//            }
+//
+//            if ("saveChanges".equals(saveChanges)) {
+//                                // Save Changes button was pressed
+//
+//                // Update user information
+//                currentUser.setUsername(user.getUsername());
+//                currentUser.setPassword(user.getPassword());
+//                currentUser.setVerified(user.getVerified());
+//                currentUser.setRole(user.getRole());
+//                currentUser.setProfileInfo(user.getProfileInfo());
+//
+//                // Use the UserRepository to update the user in the database
+//                userRepository.update(currentUser);
+//
+//                // Update the user in the session
+//                session.setAttribute("loggedInUser", currentUser);
+//
+//                // Redirect with a success message
+//                redirectAttributes.addFlashAttribute("successMessage", "User information updated successfully!");
+//
+//            } else if ("Log Out".equals(logOut)) {
+//                // Log Out button was pressed
+//
+//                // Perform log out action
+//                // ...
+//
+//            } else if ("Delete Account".equals(deleteAccount)) {
+//                // Delete Account button was pressed
+//
+//                // Use the UserRepository to delete the user from the database
+//                userRepository.deleteByEmail(currentUser.getEmail());
+//
+//                // Invalidate the session after deleting the account
+//                session.invalidate();
+//
+//                // Redirect to the home page or login page after deleting the account
+//                return "redirect:/login"; // Adjust the redirection URL as needed for your application
+//            }
+//
+//        } catch (Exception e) {
+//            // Log the exception details
+//            e.printStackTrace(); // Use a logger for better logging in a real application
+//
+//            // Optionally, add an error message for the user
+//            redirectAttributes.addFlashAttribute("errorMessage", "An unexpected error occurred.");
+//        }
+//
+//        return "redirect:/usersettings";
+//    }
+
+//    @PostMapping("/usersettings")
+//    public String deleteInfo(@ModelAttribute User user,
+//                             @RequestParam(name = "deleteaccount", required = false) String deleteAccount,
+//                             HttpSession session,
+//                             RedirectAttributes redirectAttributes) {
+//
+//        try {
+//            User currentUser = (User) session.getAttribute("loggedInUser");
+//
+//            if (currentUser == null) {
+//                // Redirect to the login page if the user is not logged in
+//                return "redirect:/login";
+//            }
+//
+//            if (deleteAccount != null) {
+//                // Delete account button was pressed
+//
+//                // Use the UserRepository to delete the user from the database
+//                userRepository.deleteByEmail(currentUser.getEmail());
+//
+//                // Remove the user from the session
+//                session.removeAttribute("loggedInUser");
+//
+//                // Redirect with a success message
+//                redirectAttributes.addFlashAttribute("successMessage", "Account deleted successfully!");
+//
+//                // Redirect to a different page or perform other actions after account deletion
+//                return "redirect:/signup";  // For example, redirect to the logout page
+//            } else {
+//                // Handle other button actions (logOut, saveChanges) if needed
+//            }
+//
+//        } catch (Exception e) {
+//            // Log the exception details
+//            e.printStackTrace(); // Use a logger for better logging in a real application
+//
+//            // Optionally, add an error message for the user
+//            redirectAttributes.addFlashAttribute("errorMessage", "An unexpected error occurred.");
+//        }
+//
+//        return "redirect:/usersettings";
+//    }
 
 
     private User getCurrentUser() {

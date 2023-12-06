@@ -64,6 +64,18 @@ public class UserRepository {
                         resultSet.getString("profileInfo")
                 ));
     }
-    // Other database operations methods
-    // ...
+    public User findById(Long userId) {
+        String sql = "SELECT * FROM users WHERE userId = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{userId}, (resultSet, rowNum) ->
+                new User(
+                        resultSet.getLong("userId"),
+                        resultSet.getString("email"),
+                        resultSet.getString("username"),
+                        resultSet.getString("password"),
+                        resultSet.getBoolean("verified"),
+                        resultSet.getString("role"),
+                        resultSet.getString("profileInfo")
+                ));
+    }
+
 }

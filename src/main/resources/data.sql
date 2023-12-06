@@ -8,8 +8,8 @@ VALUES
 
 
 
-INSERT INTO posts (userId, title, content, postDate, tags) VALUES
-                                                               (1, 'First Post', 'Content of the first post', CURRENT_TIMESTAMP, 'tag1, tag2');
+INSERT INTO posts (userId, title, content, postDate) VALUES
+                                                               (1, 'First Post', 'Content of the first post', CURRENT_TIMESTAMP);
 INSERT INTO comments (userId, postId, content, commentDate) VALUES
                                                                 (1, 1, 'This is a comment on the first post', CURRENT_TIMESTAMP);
 INSERT INTO votes (userId, postId, commentId, type) VALUES

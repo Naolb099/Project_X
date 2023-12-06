@@ -31,13 +31,15 @@ public class LogInController {
 
 
     @PostMapping("/login")
-    public String loginUser(@ModelAttribute User user, Model model, HttpSession session) {
+    public String loginUser(@ModelAttribute User user, Model model, RedirectAttributes redirectAttributes, HttpSession session) {
         try {
             User foundUser = userRepository.findByEmail(user.getEmail());
 
             if (foundUser != null && foundUser.getPassword().equals(user.getPassword())) {
                 // Store the logged-in user in the session
                 session.setAttribute("loggedInUser", foundUser);
+
+                redirectAttributes.addFlashAttribute("successMessage", "Welcome " + foundUser.getUsername() + "!");
                 return "redirect:/home";
             } else {
                 model.addAttribute("error", "Invalid email or password.");

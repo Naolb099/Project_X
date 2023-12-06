@@ -86,6 +86,7 @@ public class UserSettingsController {
 
             session.invalidate();
 
+            redirectAttributes.addFlashAttribute("successMessage", "Logged out successfully!");
             // Redirect to the login page after logging out
             return "redirect:/login";
         } else if (deleteAccount != null) {
@@ -97,7 +98,7 @@ public class UserSettingsController {
             // Invalidate the session after deleting the account
             session.invalidate();
 
-            redirectAttributes.addFlashAttribute("successMessage", "Account deleted successfully!");
+            redirectAttributes.addFlashAttribute("error", "Account deleted successfully!");
             // Redirect to the home page or login page after deleting the account
             return "redirect:/login"; // Adjust the redirection URL as needed for your application
         }

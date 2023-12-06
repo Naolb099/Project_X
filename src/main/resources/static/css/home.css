@@ -1,8 +1,131 @@
-html, body {
-    margin: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #f5f8fa;
-    color: #14171a;
+/*html, body {*/
+/*    margin: 0;*/
+/*    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+/*    background-color: #f5f8fa;*/
+/*    color: #14171a;*/
+/*}*/
+
+/*#content {*/
+/*    min-height: 100vh;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
+
+/*.navbar {*/
+/*    background-color: #262626;*/
+/*    padding: 10px 20px;*/
+/*    text-align: right;*/
+/*    color: white;*/
+/*}*/
+
+/*.navbar .nav-link, .navbar .nav-link i {*/
+/*    color: white;*/
+/*}*/
+
+/*.container {*/
+/*    max-width: 600px !important;*/
+/*    margin: 20px auto !important;*/
+/*    padding: 0 !important;*/
+/*    box-sizing: border-box !important;*/
+/*}*/
+
+
+
+/*.form-post {*/
+/*    background-color: #fff;*/
+/*    border: 1px solid #e1e8ed;*/
+/*    border-radius: 15px;*/
+/*    margin-bottom: 20px;*/
+/*    padding: 15px;*/
+/*}*/
+
+/*.post {*/
+/*    background-color: #fff;*/
+/*    border: 1px solid #e1e8ed;*/
+/*    border-radius: 15px;*/
+/*    margin-bottom: 20px;*/
+/*    padding: 15px;*/
+/*}*/
+
+/*.post-title {*/
+/*    font-size: 1.25rem;*/
+/*    font-weight: bold;*/
+/*    margin-bottom: 0.5rem;*/
+/*}*/
+
+/*.post-body {*/
+/*    font-size: 1rem;*/
+/*    margin-bottom: 1rem;*/
+/*}*/
+
+/*.post-interactions, .post-footer {*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    font-size: 0.875rem;*/
+/*    color: #657786;*/
+/*}*/
+
+/*.votes span {*/
+/*    margin: 0 5px;*/
+/*}*/
+
+/*.votes button, .post-footer button {*/
+/*    border: none;*/
+/*    background: none;*/
+/*    cursor: pointer;*/
+/*    color: #1da1f2;*/
+/*}*/
+
+/*.btn-primary {*/
+/*    background-color: #1da1f2;*/
+/*    border-color: #1da1f2;*/
+/*}*/
+
+
+/* html {
+    height: 200vh;
+} */
+
+/*position of dropdown */
+.dropdown {
+    position: absolute;
+    display: inline-block;
+    margin-right: 80px;
+}
+
+
+/* set the size and position of button on web */
+.dropdown button {
+    background: #262626;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* provide css to background of list items */
+#list-items {
+    display: none;
+    position: absolute;
+    background-color: white;
+    width: 156.5px;
+    transform: translateX(-40%);
+    top: 100%;
+    border-top: none;
+}
+
+
+/* provide css to list items */
+#list-items a {
+    display: block;
+    font-size: 15px;
+    /* background-color: rgb(240, 144, 144); */
+    background-color:#262626;
+    color: #f9f9f9;
+    text-decoration: none;
+    padding: 10px;
+    text-align: center;
 }
 
 #content {
@@ -15,11 +138,54 @@ html, body {
     background-color: #262626;
     padding: 10px 20px;
     text-align: right;
-    color: white;
+    border-bottom: 1px solid rgb(205, 205, 205);
+    transition: 0.3s ease;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
 
-.navbar .nav-link, .navbar .nav-link i {
-    color: white;
+.navbar .nav-link, .navbar .nav-link i{
+    color: #f9f9f9;
+    font-weight: bold;
+    font-size: large;
+}
+
+.user-icon {
+    color: gold;
+    margin: 2px;
+}
+
+.navbar span
+{
+    position: relative;
+    margin-right: 20px;
+    color: #f9f9f9;
+}
+
+
+.show {
+    display: block;
+}
+
+.navbar:hover {
+    background-color: transparent;
+}
+
+.navbar:hover a {
+    color: black;
+}
+
+.navbar:hover .dropdown button{
+    background-color: transparent;
+}
+
+.navbar:hover i {
+    color: black;
+}
+.navbar:hover span {
+    color: black;
 }
 
 .container {
@@ -80,4 +246,27 @@ html, body {
 .btn-primary {
     background-color: #1da1f2;
     border-color: #1da1f2;
+}
+
+
+.post-footer .fas.fa-arrow-down{
+    transition: 0.2s ease;
+}
+
+.post-footer .fas.fa-arrow-down:hover {
+    color: red;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+
+
+.post-footer .fas.fa-arrow-up{
+    transition: 0.2s ease;
+}
+
+.post-footer .fas.fa-arrow-up:hover {
+    filter: brightness(150%);
+    color: green;
+    font-weight: bold;
+    transition: 0.2s ease;
 }

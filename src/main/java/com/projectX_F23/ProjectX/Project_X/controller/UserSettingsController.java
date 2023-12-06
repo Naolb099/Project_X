@@ -2,6 +2,7 @@ package com.projectX_F23.ProjectX.Project_X.controller;
 
 import com.projectX_F23.ProjectX.Project_X.repository.UserRepository;
 import com.projectX_F23.ProjectX.Project_X.model.User;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -24,29 +25,54 @@ public class UserSettingsController {
     }
 
     @GetMapping("/usersettings")
-    public String showUserSettings(User user, Model model) {
-        //User currentUser = userRepository.findByUsername(user.getUsername());
-        // This is just a placeholder until findByUsername works
-        User currentUser = getCurrentUser();
+    public String showUserSettings(Model model, HttpSession session) {
+        // Retrieve the logged-in user from the session
+        User currentUser = (User) session.getAttribute("loggedInUser");
+        // Check if the user is logged in
+        if (currentUser == null) {
+            // Redirect to the login page if the user is not logged in
+            return "redirect:/login";
+        }
+
         model.addAttribute("user", currentUser);
-        return "userSettings";
+        return "usersettings";
     }
 
     @PostMapping("/usersettings")
     public String updateInfo(@ModelAttribute User user,
                              @RequestParam(name = "saveChanges", required = false) String saveChanges,
                              @RequestParam(name = "logOut", required = false) String logOut,
-                             @RequestParam(name = "deleteAccount", required = false) String deleteAccount){
+                             @RequestParam(name = "deleteAccount", required = false) String deleteAccount,
+                             HttpSession session,
+                             RedirectAttributes redirectAttributes) {
 
-        //User currentUser = userRepository.findByUsername(user.getUsername());
-        // This is just a placeholder until findByUsername works
-        User currentUser = getCurrentUser();
+        User currentUser = (User) session.getAttribute("loggedInUser");
+
+        if (currentUser == null) {
+            // Redirect to the login page if the user is not logged in
+            return "redirect:/login";
+        }
 
         if (saveChanges != null) {
             // Save Changes button was pressed
             currentUser.setUsername(user.getUsername());
-            // Save password if match
 
+            // Check if the password is not empty and matches the confirmation
+            if (!user.getPassword().isEmpty() && user.getPassword().equals(user.getPassword())) {
+                // Encrypt and save the new password
+                //BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+               // String encryptedPassword = passwordEncoder.encode(user.getPassword());
+                currentUser.setPassword(encryptedPassword);
+            }
+
+            // Save the updated user to the database
+            userRepository.save(currentUser);
+
+            // Update the user in the session
+            session.setAttribute("loggedInUser", currentUser);
+
+            // Redirect with a success message
+            redirectAttributes.addFlashAttribute("successMessage", "User information updated successfully!");
         } else if (logOut != null) {
             // Log Out button was pressed
             // Actions
@@ -55,8 +81,9 @@ public class UserSettingsController {
             // Actions
         }
 
-        return "redirect:usersettings";
+        return "redirect:/usersettings";
     }
+
 
     private User getCurrentUser() {
         User user = new User();

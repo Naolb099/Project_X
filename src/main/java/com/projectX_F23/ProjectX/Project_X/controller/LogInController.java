@@ -2,6 +2,7 @@ package com.projectX_F23.ProjectX.Project_X.controller;
 
 import com.projectX_F23.ProjectX.Project_X.model.User;
 import com.projectX_F23.ProjectX.Project_X.repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
@@ -27,14 +28,16 @@ public class LogInController {
         model.addAttribute("user", new User());
         return "login";
     }
+
+
     @PostMapping("/login")
-
-
-    public String loginUser(@ModelAttribute User user, Model model) {
+    public String loginUser(@ModelAttribute User user, Model model, HttpSession session) {
         try {
             User foundUser = userRepository.findByEmail(user.getEmail());
 
             if (foundUser != null && foundUser.getPassword().equals(user.getPassword())) {
+                // Store the logged-in user in the session
+                session.setAttribute("loggedInUser", foundUser);
                 return "redirect:/home";
             } else {
                 model.addAttribute("error", "Invalid email or password.");

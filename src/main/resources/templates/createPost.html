@@ -19,7 +19,9 @@
             <div id="list-items">
                 <a th:href="@{/home}"> Profile </a>
                 <a  th:href="@{/usersettings}"> Settings </a>
-                <a th:href="@{/home}"> Logout </a>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Logout" class="list-item-button"/>
+                </form>
             </div>
             <span th:text="${loggedInUser != null ? loggedInUser.username : 'Guest'}"></span>
             </span>

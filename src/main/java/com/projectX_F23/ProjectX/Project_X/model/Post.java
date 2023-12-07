@@ -4,8 +4,7 @@ import java.time.LocalDateTime;
 
 public class Post {
     private Long postId;
-    //private Long userId;
-    private User user;
+    private Long userId;
     private String title;
     private String content;
     private LocalDateTime postDate;
@@ -15,9 +14,8 @@ public class Post {
     }
 
     // Constructor with fields
-    public Post(User user, String title, String content, LocalDateTime postDate) {
-//        this.userId = userId;
-        this.user = user;
+    public Post(Long userId, String title, String content, LocalDateTime postDate) {
+        this.userId = userId;
         this.title = title;
         this.content = content;
         this.postDate = postDate;
@@ -32,14 +30,13 @@ public class Post {
         this.postId = postId;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
-
 
     public String getTitle() {
         return title;

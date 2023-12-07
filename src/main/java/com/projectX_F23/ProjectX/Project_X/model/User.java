@@ -1,6 +1,8 @@
 package com.projectX_F23.ProjectX.Project_X.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private Long id;
     private String email;
     private String username;
@@ -10,6 +12,8 @@ public class User {
     private String profileInfo;
 
     private String confirmPassword;
+
+    private static final long serialVersionUID = 1L;
 
     // No-arg constructor
     public User() {

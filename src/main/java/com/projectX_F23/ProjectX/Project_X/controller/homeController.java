@@ -1,6 +1,7 @@
 package com.projectX_F23.ProjectX.Project_X.controller;
 
 import com.projectX_F23.ProjectX.Project_X.model.User;
+import com.projectX_F23.ProjectX.Project_X.repository.PostRepository;
 import com.projectX_F23.ProjectX.Project_X.repository.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class homeController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PostRepository postRepository;
 
     @GetMapping("/home")
     public String home(Model model, HttpSession session) {

@@ -11,15 +11,6 @@
 <body>
 
 <div id="content">
-<!--    <div class="navbar">-->
-<!--        <a href="#" th:href="@{/home}" class="nav-link"><i class="fas fa-home"></i> Home</a>-->
-<!--        <a href="#" th:href="@{/createPost}" class="nav-link"><i class="fas fa-edit"></i> Create Post</a>-->
-<!--        <span class="user-icon">-->
-<!--        <i class="fas fa-user"></i>-->
-<!--        <span th:text="${loggedInUser != null ? loggedInUser.username : 'Guest'}"></span>-->
-<!--        </span>-->
-<!--&lt;!&ndash;        <span class="user-icon"><i class="fas fa-user"></i></span>&ndash;&gt;-->
-<!--    </div>-->
     <div class="navbar">
         <a href="#" th:href="@{/home}" class="nav-link"><i class="fas fa-home"></i> Home</a>
 <!--        <a href="#" th:href="@{/createPost}" class="nav-link"><i class="fas fa-edit"></i> Create Post</a>-->
@@ -45,7 +36,7 @@
     </div>
     <div class="container" style="max-width: 600px">
         <div class="form-post">
-            <form id="postForm" th:action="@{/post}" method="post">
+            <form id="postForm" th:action="@{/createPost}" method="post">
                 <div class="form-group">
                     <input type="text" class="form-control" id="postTitle" name="title" placeholder="Enter post title" required>
                 </div>

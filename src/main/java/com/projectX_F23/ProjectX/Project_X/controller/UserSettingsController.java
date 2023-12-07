@@ -30,7 +30,6 @@ public class UserSettingsController {
         User currentUser = (User) session.getAttribute("loggedInUser");
         // Check if the user is logged in
         if (currentUser == null) {
-            // Redirect to the login page if the user is not logged in
             return "redirect:/login";
         }
 

@@ -11,8 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.security.Principal;
 import java.time.LocalDateTime;
 
 @Controller
@@ -28,28 +29,43 @@ public class PostController {
 
     @GetMapping("/createPost")
     public String showPostForm(Model model, HttpSession session) {
-        model.addAttribute("post", new Post());
         User loggedInUser = (User) session.getAttribute("loggedInUser");
 
         // Check if the user is logged in
-        if (loggedInUser != null) {
-            // Add the user information to the model
-            model.addAttribute("loggedInUser", loggedInUser);
+        if (loggedInUser == null) {
+            return "redirect:/login";
         }
+
+        model.addAttribute("post", new Post());
+        model.addAttribute("loggedInUser", loggedInUser);
+
         return "createPost";
     }
 
-    @PostMapping("/post")
-    public String createPost(@ModelAttribute Post post, Principal principal) {
-        if (principal != null) {
-            User user = userRepository.findByUsername(principal.getName());
-            if (user != null) {
-                post.setUser(user);
-                post.setPostDate(LocalDateTime.now());
-                postRepository.save(post);
+    @PostMapping("/createPost")
+    public String createOrUpdatePost(@ModelAttribute Post post,
+                                     HttpSession session,
+                                     RedirectAttributes redirectAttributes) {
+        try {
+            User loggedInUser = (User) session.getAttribute("loggedInUser");
+
+            if (loggedInUser == null) {
+                return "redirect:/login";
             }
 
+            // Set userId for the post
+            post.setUserId(loggedInUser.getId()); // Assuming getId() is the method to get User ID
+            post.setPostDate(LocalDateTime.now());
+
+            // Save or update post
+            postRepository.save(post);
+
+            redirectAttributes.addFlashAttribute("successMessage", "Post saved successfully!");
+        } catch (Exception e) {
+            e.printStackTrace(); // Use a logger in a real application
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving the post.");
         }
+
         return "redirect:/home";
     }
 }

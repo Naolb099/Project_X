@@ -21,7 +21,6 @@
             <div id="list-items">
                 <a th:href="@{/home}"> Profile </a>
                 <a  th:href="@{/usersettings}"> Settings </a>
-<!--                <a th:href="@{/login}"> Logout </a>-->
                 <form th:action="@{/logout}" method="post">
                     <input type="submit" value="Logout" class="list-item-button"/>
                 </form>
@@ -52,9 +51,13 @@
         <h4>Recent Posts</h4>
         <div th:each="post : ${posts}">
             <div class="post">
+<!--                <div class="post-header">-->
+<!--                    <span th:text="${post.user != null ? post.user.username : 'Anonymous'}">Username</span>-->
+<!--                </div>-->
                 <div class="post-header">
-                    <span th:text="${post.user != null ? post.user.username : 'Anonymous'}">Username</span>
+                    <span th:text="${post.user != null and post.user.username != null ? post.user.username : 'Anonymous'}">Username</span>
                 </div>
+
                 <div class="post-title" th:text="${post.title}">Post Title</div>
                 <div class="post-body" th:text="${post.content}">Post Body</div>
                 <div class="post-footer">

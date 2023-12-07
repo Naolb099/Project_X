@@ -53,19 +53,18 @@ public class PostController {
                 return "redirect:/login";
             }
 
-            // Set userId for the post
-            post.setUserId(loggedInUser.getId()); // Assuming getId() is the method to get User ID
+            post.setUserId(loggedInUser.getId());
+            post.setUser(loggedInUser); // Add this line
             post.setPostDate(LocalDateTime.now());
 
-            // Save or update post
             postRepository.save(post);
 
             redirectAttributes.addFlashAttribute("successMessage", "Post saved successfully!");
         } catch (Exception e) {
-            e.printStackTrace(); // Use a logger in a real application
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving the post.");
         }
 
         return "redirect:/home";
     }
+
 }

@@ -55,33 +55,25 @@ public class UserSettingsController {
             User currentUser = (User) session.getAttribute("loggedInUser");
 
             if (currentUser == null) {
-                // Redirect to the login page if the user is not logged in
                 return "redirect:/login";
             }
 
         if (saveChanges != null) {
-            // Save Changes button was pressed
-            // Update user information
             currentUser.setUsername(user.getUsername());
             currentUser.setPassword(user.getPassword());
             currentUser.setVerified(user.getVerified());
             currentUser.setRole(user.getRole());
             currentUser.setProfileInfo(user.getProfileInfo());
 
-            // Use the UserRepository to update the user in the database
             userRepository.update(currentUser);
 
-            // Update the user in the session
             session.setAttribute("loggedInUser", currentUser);
 
-            /// Redirect with a success message
             redirectAttributes.addFlashAttribute("successMessage", "User information updated successfully!");
 
-            // Use a redirect to prevent the flash attributes from being cleared
             return "redirect:/usersettings";
 
         } else if (logOut != null) {
-            // Log Out button was pressed
 
             session.invalidate();
 

@@ -9,7 +9,7 @@ public class Post {
     private String content;
     private LocalDateTime postDate;
 
-    private User user; // Ensure this field is present
+    private User user;
 
     // Getters and setters
     public User getUser() {

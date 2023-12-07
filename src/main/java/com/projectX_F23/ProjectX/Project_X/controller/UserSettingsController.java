@@ -88,21 +88,18 @@ public class UserSettingsController {
             return "redirect:/login";
         } else if (deleteAccount != null) { // Delete account button was pressed
 
-            // Use the UserRepository to delete the user from the database
             userRepository.deleteByEmail(currentUser.getEmail());
 
-            // Invalidate the session after deleting the account
             session.invalidate();
 
             redirectAttributes.addFlashAttribute("error", "Account deleted successfully!");
             // Redirect to the home page or login page after deleting the account
-            return "redirect:/login"; // Adjust the redirection URL as needed for your application
+            return "redirect:/login";
         }
         } catch (Exception e) {
             // Log the exception details
-            e.printStackTrace(); // Use a logger for better logging in a real application
+            e.printStackTrace();
 
-            // Optionally, add an error message for the user
             redirectAttributes.addFlashAttribute("errorMessage", "An unexpected error occurred.");
         }
 

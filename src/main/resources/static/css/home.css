@@ -97,7 +97,7 @@
 
 /* set the size and position of button on web */
 .dropdown button {
-    background: #662d91;
+    background: #7756FF;
     font-size: 15px;
     border: none;
     cursor: pointer;
@@ -152,7 +152,7 @@
 }
 
 .navbar {
-    background-color: #662d91;
+    background-color: #7756FF;
     padding: 10px 20px;
     text-align: right;
     border-bottom: 1px solid rgb(205, 205, 205);

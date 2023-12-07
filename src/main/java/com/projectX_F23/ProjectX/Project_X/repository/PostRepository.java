@@ -1,6 +1,7 @@
 package com.projectX_F23.ProjectX.Project_X.repository;
 
 import com.projectX_F23.ProjectX.Project_X.model.Post;
+import com.projectX_F23.ProjectX.Project_X.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -24,24 +25,32 @@ public class PostRepository {
         jdbcTemplate.update(sql, post.getUserId(), post.getTitle(), post.getContent(), post.getPostDate());
     }
 
-    public Post findById(Long postId) {
-        String sql = "SELECT * FROM posts WHERE postId = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{postId}, this::mapRowToPost);
-    }
+public List<Post> findAll() {
+    String sql = "SELECT p.*, u.userId as user_id, u.username " +
+            "FROM posts p " +
+            "JOIN users u ON p.userId = u.userId " +
+            "ORDER BY p.postDate DESC";
 
-    private Post mapRowToPost(ResultSet rs, int rowNum) throws SQLException {
+    return jdbcTemplate.query(sql, this::mapRowToPostWithUser);
+}
+
+
+    private Post mapRowToPostWithUser(ResultSet rs, int rowNum) throws SQLException {
         Post post = new Post();
         post.setPostId(rs.getLong("postId"));
-        post.setUserId(rs.getLong("userId"));  // Retrieve and set userId
+        post.setUserId(rs.getLong("userId"));
         post.setTitle(rs.getString("title"));
         post.setContent(rs.getString("content"));
         post.setPostDate(rs.getTimestamp("postDate").toLocalDateTime());
+
+        User user = new User();
+        user.setId(rs.getLong("user_id"));
+        user.setUsername(rs.getString("username"));
+
+        post.setUser(user);
+
         return post;
     }
 
-    public List<Post> findAll() {
-        String sql = "SELECT * FROM posts ORDER BY postDate DESC";
-        return jdbcTemplate.query(sql, this::mapRowToPost);
-    }
 
 }

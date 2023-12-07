@@ -52,7 +52,8 @@
         <div th:each="post : ${posts}">
             <div class="post">
                 <div class="post-header">
-                    <span th:text="${post.user != null and post.user.username != null ? post.user.username : 'Anonymous'}">Username</span>
+                    <span th:text="${post.user.username}">Username</span>
+<!--                    <span th:text="${post.user != null and post.user.username != null ? post.user.username : 'Anonymous'}">Username</span>-->
                     <div class="post-date-top-right" th:text="${#temporals.format(post.postDate, 'dd MMM yyyy HH:mm')}">Formatted Date and Time</div>
                 </div>
 

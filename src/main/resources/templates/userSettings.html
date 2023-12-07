@@ -63,7 +63,9 @@
         <div class="form-group mb-3">
             <label for="password"> Password</label>
             <div class="input-group">
-                <input th:field="*{password}" type="password" class="form-control" id="password" name="password" readonly>
+                <input th:field="*{password}" type="password" class="form-control" id="password" name="password" readonly
+                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=]).{8,}"
+                       title="Password must contain at least 8 characters, including 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character (!@#$%^&+=)">
                 <div class="input-group-append">
                     <button type="button" class="btn btn-secondary" onclick="enableField('password')">Edit</button>
                 </div>

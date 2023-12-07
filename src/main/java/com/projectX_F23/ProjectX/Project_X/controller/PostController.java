@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
-
 @Controller
 public class PostController {
     private final PostRepository postRepository;
@@ -29,27 +28,35 @@ public class PostController {
     @GetMapping("/createPost")
     public String showPostForm(Model model, HttpSession session) {
         model.addAttribute("post", new Post());
+
+        // Retrieve the logged-in user from the session
         User loggedInUser = (User) session.getAttribute("loggedInUser");
 
-        // Check if the user is logged in
         if (loggedInUser != null) {
             // Add the user information to the model
             model.addAttribute("loggedInUser", loggedInUser);
+            return "createPost";
+        } else {
+            // Handle the case where the user is not logged in
+            return "redirect:/login"; // Redirect to the login page or handle as appropriate
         }
-        return "createPost";
     }
 
     @PostMapping("/post")
-    public String createPost(@ModelAttribute Post post, Principal principal) {
-        if (principal != null) {
-            User user = userRepository.findByUsername(principal.getName());
-            if (user != null) {
-                post.setUser(user);
-                post.setPostDate(LocalDateTime.now());
-                postRepository.save(post);
-            }
+    public String createPost(@ModelAttribute Post post, HttpSession session) {
+        // Retrieve the logged-in user from the session
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
 
+        if (loggedInUser != null) {
+            // Set the user and post date before saving
+            post.setUser(loggedInUser);
+            post.setPostDate(LocalDateTime.now());
+            postRepository.save(post, loggedInUser);
+            return "redirect:/home";
+        } else {
+            // Handle the case where the user is not logged in
+            return "redirect:/login"; // Redirect to the login page or handle as appropriate
         }
-        return "redirect:/home";
     }
+
 }

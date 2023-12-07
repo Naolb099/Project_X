@@ -9,6 +9,16 @@ public class Post {
     private String content;
     private LocalDateTime postDate;
 
+    private User user; // Ensure this field is present
+
+    // Getters and setters
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
     // Default constructor
     public Post() {
     }

@@ -13,7 +13,6 @@
 <div id="content">
     <div class="navbar">
         <a href="#" th:href="@{/home}" class="nav-link"><i class="fas fa-home"></i> Home</a>
-<!--        <a href="#" th:href="@{/createPost}" class="nav-link"><i class="fas fa-edit"></i> Create Post</a>-->
         <div class="dropdown">
             <button onclick="show_hide()" class="user-icon">
                 <i class="fas fa-user"></i>
@@ -29,7 +28,6 @@
             </div>
             <span th:text="${loggedInUser != null ? loggedInUser.username : 'Guest'}"></span>
 
-<!--            <span class="user-icon">-->
 
             </span>
         </div>
@@ -50,32 +48,22 @@
         </div>
     </div>
 
-    <div class="container" style="max-width: 600px">
-
-        <h4>Recent Posts</h4>
-        <div th:each="i : ${#numbers.sequence(1, 3)}" class="post">
-            <div class="post-title">Dummy Post Title <span th:text="${i}"></span></div>
-            <div class="post-body">
-                This is the body of dummy post <span th:text="${i}"></span>. It has some text here to simulate an actual post.
-            </div>
-            <div class="post-footer">
-            <span class="vote">
-                <i class="fas fa-arrow-up"></i>
-                <span class="vote-count"></span>
-                <i class="fas fa-arrow-down"></i>
-            </span>
-                <i class="fas fa-comment comment-icon"></i>
-            </div>
-        </div>
-    </div>
-
     <div class="container">
+        <h4>Recent Posts</h4>
         <div th:each="post : ${posts}">
             <div class="post">
+                <div class="post-header">
+                    <span th:text="${post.user != null ? post.user.username : 'Anonymous'}">Username</span>
+                </div>
                 <div class="post-title" th:text="${post.title}">Post Title</div>
                 <div class="post-body" th:text="${post.content}">Post Body</div>
                 <div class="post-footer">
-                    <span th:text="${#dates.format(post.postDate, 'dd MMM yyyy')}">Post Date</span>
+                    <span th:text="${#temporals.format(post.postDate, 'dd MMM yyyy')}">Formatted Date</span>
+                    <button th:onclick="'upvote(' + ${post.postId} + ')'">Upvote</button>
+                    <span>10</span>
+                    <button th:onclick="'downvote(' + ${post.postId} + ')'">Downvote</button>
+                    <span>2</span>
+                    <i class="fas fa-comment"></i>
                 </div>
             </div>
         </div>

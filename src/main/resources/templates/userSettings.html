@@ -6,10 +6,11 @@
     <title>User Settings</title>
 
     <!-- Bootstrap CSS -->
-<!--    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"> -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/usersettings.css}">
 </head>
 <body>
 
@@ -32,8 +33,13 @@
 
 
 <div class="container mt-5">
-    <h2>User Settings</h2>
-
+    <div class="text-center mb-4">
+        <h2>User Settings</h2>
+        <h6 class="text-muted">Click edit to change your settings.</h6>
+    </div>
+    <div class="form-divider d-flex align-items-center">
+        <div></div>
+    </div>
     <form th:action="@{/usersettings}" method="post" th:object="${user}">
 
         <!-- Username -->
@@ -49,12 +55,12 @@
 
         <!-- Email -->
         <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email">Email address</label>
             <input th:field="*{email}" type="email" class="form-control" id="email" name="email" readonly>
         </div>
 
         <!-- Password -->
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label for="password"> Password</label>
             <div class="input-group">
                 <input th:field="*{password}" type="password" class="form-control" id="password" name="password" readonly>
@@ -63,15 +69,12 @@
                 </div>
             </div>
         </div>
-
         <button type="submit" class="btn btn-primary" value="SaveChanges" name="saveChanges">Save Changes</button>
-
-        <div class="text-center mt-5 mb-5">
+        <div class="mt-3">
             <button type="submit" class="btn btn-secondary" value="logOut" name="logOut">Log Out</button>
             <button type="submit" class="btn btn-danger" value="deleteAccount" name="deleteAccount">Delete Account</button>
         </div>
     </form>
-
 </div>
 
 <!-- JavaScript to enable/disable form fields -->

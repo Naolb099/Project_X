@@ -40,7 +40,7 @@ public class PostRepository {
     }
 
     public List<Post> findAll() {
-        String sql = "SELECT * FROM posts";
+        String sql = "SELECT * FROM posts ORDER BY postDate DESC";
         return jdbcTemplate.query(sql, this::mapRowToPost);
     }
 

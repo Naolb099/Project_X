@@ -19,7 +19,9 @@
     <form th:action="@{/signup}" th:object="${user}" method="post">
         <input type="text" th:field="*{email}" class="form-control" placeholder="Email" required pattern=".+@(trojans.dsu.edu|dsu.edu)$" title="Email must be a trojans.dsu.edu or dsu.edu address">
         <input type="text" th:field="*{username}" class="form-control" placeholder="Username" required>
-        <input type="password" th:field="*{password}" class="form-control" placeholder="Password">
+        <input type="password" th:field="*{password}" class="form-control" placeholder="Password" required
+               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}"
+               title="Password must contain at least 8 characters, including 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character (@#$%^&+=)">
         <button type="submit" class="btn btn-primary btn-block">Sign up</button>
     </form>
 </div>

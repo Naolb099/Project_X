@@ -20,10 +20,11 @@ public class PostRepository {
         this.userRepository = userRepository;
     }
 
-    public void save(Post post) {
+    public void save(Post post, User currentUser) {
         String sql = "INSERT INTO posts (userId, title, content, postDate) VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(sql, post.getUser(), post.getTitle(), post.getContent(), post.getPostDate());
+        jdbcTemplate.update(sql, currentUser.getId(), post.getTitle(), post.getContent(), post.getPostDate());
     }
+
 
     public Post findById(Long postId) {
         String sql = "SELECT * FROM posts WHERE postId = ?";

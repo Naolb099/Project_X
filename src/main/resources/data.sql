@@ -1,5 +1,5 @@
 INSERT INTO users (email, username, password, verified, role, profileInfo) VALUES
-                                                                               ('john.kerry@example.com', 'johnkerry', 'hashedpassword2', false, 'ADMIN', 'Information about Jane');
+                                                                               ('john.doe44@example.com', 'johndoe44', 'hashedpassword2', false, 'ADMIN', 'Information about Jane');
 INSERT INTO users (email, username, password, verified, role, profileInfo)
 VALUES
     ('john.doe@example.com', 'JohnDoe', 'hashedpassword', true, 'USER', 'Profile information about John'),

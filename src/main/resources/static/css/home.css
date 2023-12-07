@@ -1,92 +1,3 @@
-/*html, body {*/
-/*    margin: 0;*/
-/*    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
-/*    background-color: #f5f8fa;*/
-/*    color: #14171a;*/
-/*}*/
-
-/*#content {*/
-/*    min-height: 100vh;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*}*/
-
-/*.navbar {*/
-/*    background-color: #262626;*/
-/*    padding: 10px 20px;*/
-/*    text-align: right;*/
-/*    color: white;*/
-/*}*/
-
-/*.navbar .nav-link, .navbar .nav-link i {*/
-/*    color: white;*/
-/*}*/
-
-/*.container {*/
-/*    max-width: 600px !important;*/
-/*    margin: 20px auto !important;*/
-/*    padding: 0 !important;*/
-/*    box-sizing: border-box !important;*/
-/*}*/
-
-
-
-/*.form-post {*/
-/*    background-color: #fff;*/
-/*    border: 1px solid #e1e8ed;*/
-/*    border-radius: 15px;*/
-/*    margin-bottom: 20px;*/
-/*    padding: 15px;*/
-/*}*/
-
-/*.post {*/
-/*    background-color: #fff;*/
-/*    border: 1px solid #e1e8ed;*/
-/*    border-radius: 15px;*/
-/*    margin-bottom: 20px;*/
-/*    padding: 15px;*/
-/*}*/
-
-/*.post-title {*/
-/*    font-size: 1.25rem;*/
-/*    font-weight: bold;*/
-/*    margin-bottom: 0.5rem;*/
-/*}*/
-
-/*.post-body {*/
-/*    font-size: 1rem;*/
-/*    margin-bottom: 1rem;*/
-/*}*/
-
-/*.post-interactions, .post-footer {*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
-/*    align-items: center;*/
-/*    font-size: 0.875rem;*/
-/*    color: #657786;*/
-/*}*/
-
-/*.votes span {*/
-/*    margin: 0 5px;*/
-/*}*/
-
-/*.votes button, .post-footer button {*/
-/*    border: none;*/
-/*    background: none;*/
-/*    cursor: pointer;*/
-/*    color: #1da1f2;*/
-/*}*/
-
-/*.btn-primary {*/
-/*    background-color: #1da1f2;*/
-/*    border-color: #1da1f2;*/
-/*}*/
-
-
-/* html {
-    height: 200vh;
-} */
-
 /*position of dropdown */
 .dropdown {
     position: absolute;
@@ -282,6 +193,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 0.8em;
+    color: #666;
 
 }
 
@@ -312,3 +225,34 @@
     font-weight: bold;
     transition: 0.2s ease;
 }
+
+.post-body {
+    /* Initially limit the height */
+    max-height: 100px;
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.3s ease;
+}
+
+/* Fade effect */
+.post-body::after {
+    content: '';
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 50px;
+    background-image: linear-gradient(to bottom, transparent, white);
+}
+
+/* Expanded state */
+.post-body.expanded {
+    max-height: none;
+}
+
+/* Hide the fade effect when expanded */
+.post-body.expanded::after {
+    display: none;
+}
+

@@ -6,3 +6,12 @@ function show_hide() {
         click.style.display = "none";
     }
 }
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('.post-body').forEach(postBody => {
+        postBody.addEventListener('click', function() {
+            this.classList.toggle('expanded');
+        });
+    });
+});
+
+

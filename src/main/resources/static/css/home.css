@@ -289,3 +289,18 @@
 }
 
 
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-date {
+    font-size: 0.8em;
+    color: #666;
+}
+
+.post-footer i {
+    margin-right: 8px;
+}
+

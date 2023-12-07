@@ -53,13 +53,12 @@
             <div class="post">
                 <div class="post-header">
                     <span th:text="${post.user != null and post.user.username != null ? post.user.username : 'Anonymous'}">Username</span>
-<!--                    <span class="post-date" th:text="${#temporals.format(post.postDate, 'dd MMM yyyy HH:mm')}">Formatted Date and Time</span>-->
                     <div class="post-date-top-right" th:text="${#temporals.format(post.postDate, 'dd MMM yyyy HH:mm')}">Formatted Date and Time</div>
                 </div>
 
                 <div class="post-title" th:text="${post.title}">Post Title</div>
                 <div class="post-body" th:text="${post.content}">Post Body</div>
-                <div class="post-footer">
+                <div class="post-footer" style="margin-right: 5px">
                     <i class="fas fa-arrow-up" th:onclick="'upvote(' + ${post.postId} + ')'"></i>
                     <span>10</span>
                     <i class="fas fa-arrow-down" th:onclick="'downvote(' + ${post.postId} + ')'"></i>

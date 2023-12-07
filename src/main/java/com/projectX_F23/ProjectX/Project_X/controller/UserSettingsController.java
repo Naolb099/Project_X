@@ -59,32 +59,34 @@ public class UserSettingsController {
                 return "redirect:/login";
             }
 
-        if (saveChanges != null) {
-            currentUser.setUsername(user.getUsername());
-            if (!Objects.equals(user.getPassword(), "")) {
-                currentUser.setPassword(user.getPassword());
+        if (saveChanges != null) { // Save changes button was pressed
+
+            if (!Objects.equals(user.getPassword(), "") || !Objects.equals(user.getUsername(), currentUser.getUsername())) { // Changes were made
+                currentUser.setUsername(user.getUsername());
+                if (!Objects.equals(user.getPassword(), "")) {
+                    // Password not blank
+                    currentUser.setPassword(user.getPassword());
+                }
+                currentUser.setVerified(user.getVerified());
+                currentUser.setRole(user.getRole());
+                currentUser.setProfileInfo(user.getProfileInfo());
+
+                userRepository.update(currentUser);
+
+                session.setAttribute("loggedInUser", currentUser);
+
+                redirectAttributes.addFlashAttribute("successMessage", "User information updated successfully!");
+
+                return "redirect:/usersettings";
             }
-            currentUser.setVerified(user.getVerified());
-            currentUser.setRole(user.getRole());
-            currentUser.setProfileInfo(user.getProfileInfo());
-
-            userRepository.update(currentUser);
-
-            session.setAttribute("loggedInUser", currentUser);
-
-            redirectAttributes.addFlashAttribute("successMessage", "User information updated successfully!");
-
-            return "redirect:/usersettings";
-
-        } else if (logOut != null) {
+        } else if (logOut != null) { // Log out button was pressed
 
             session.invalidate();
 
             redirectAttributes.addFlashAttribute("successMessage", "Logged out successfully!");
             // Redirect to the login page after logging out
             return "redirect:/login";
-        } else if (deleteAccount != null) {
-            // Delete Account button was pressed
+        } else if (deleteAccount != null) { // Delete account button was pressed
 
             // Use the UserRepository to delete the user from the database
             userRepository.deleteByEmail(currentUser.getEmail());

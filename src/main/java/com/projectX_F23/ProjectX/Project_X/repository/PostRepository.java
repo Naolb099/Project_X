@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public class PostRepository {
@@ -37,4 +38,10 @@ public class PostRepository {
         post.setPostDate(rs.getTimestamp("postDate").toLocalDateTime());
         return post;
     }
+
+    public List<Post> findAll() {
+        String sql = "SELECT * FROM posts";
+        return jdbcTemplate.query(sql, this::mapRowToPost);
+    }
+
 }

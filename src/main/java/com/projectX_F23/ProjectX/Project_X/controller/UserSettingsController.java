@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Objects;
+
 
 @Controller
 public class UserSettingsController {
@@ -57,30 +59,34 @@ public class UserSettingsController {
                 return "redirect:/login";
             }
 
-        if (saveChanges != null) {
-            currentUser.setUsername(user.getUsername());
-            currentUser.setPassword(user.getPassword());
-            currentUser.setVerified(user.getVerified());
-            currentUser.setRole(user.getRole());
-            currentUser.setProfileInfo(user.getProfileInfo());
+        if (saveChanges != null) { // Save changes button was pressed
 
-            userRepository.update(currentUser);
+            if (!Objects.equals(user.getPassword(), "") || !Objects.equals(user.getUsername(), currentUser.getUsername())) { // Changes were made
+                currentUser.setUsername(user.getUsername());
+                if (!Objects.equals(user.getPassword(), "")) {
+                    // Password not blank
+                    currentUser.setPassword(user.getPassword());
+                }
+                currentUser.setVerified(user.getVerified());
+                currentUser.setRole(user.getRole());
+                currentUser.setProfileInfo(user.getProfileInfo());
 
-            session.setAttribute("loggedInUser", currentUser);
+                userRepository.update(currentUser);
 
-            redirectAttributes.addFlashAttribute("successMessage", "User information updated successfully!");
+                session.setAttribute("loggedInUser", currentUser);
 
-            return "redirect:/usersettings";
+                redirectAttributes.addFlashAttribute("successMessage", "User information updated successfully!");
 
-        } else if (logOut != null) {
+                return "redirect:/usersettings";
+            }
+        } else if (logOut != null) { // Log out button was pressed
 
             session.invalidate();
 
             redirectAttributes.addFlashAttribute("successMessage", "Logged out successfully!");
             // Redirect to the login page after logging out
             return "redirect:/login";
-        } else if (deleteAccount != null) {
-            // Delete Account button was pressed
+        } else if (deleteAccount != null) { // Delete account button was pressed
 
             // Use the UserRepository to delete the user from the database
             userRepository.deleteByEmail(currentUser.getEmail());

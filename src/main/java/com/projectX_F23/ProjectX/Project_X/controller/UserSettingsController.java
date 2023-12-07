@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Objects;
+
 
 @Controller
 public class UserSettingsController {
@@ -59,7 +61,9 @@ public class UserSettingsController {
 
         if (saveChanges != null) {
             currentUser.setUsername(user.getUsername());
-            currentUser.setPassword(user.getPassword());
+            if (!Objects.equals(user.getPassword(), "")) {
+                currentUser.setPassword(user.getPassword());
+            }
             currentUser.setVerified(user.getVerified());
             currentUser.setRole(user.getRole());
             currentUser.setProfileInfo(user.getProfileInfo());

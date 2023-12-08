@@ -37,7 +37,17 @@ public class UserRepository {
     }
 
     public void deleteByEmail(String email) {
-        String sql = "DELETE FROM users WHERE email = ?";
+        User user = findByEmail(email);
+
+        // Update db tables to reflect the deleted user
+        String sql = "UPDATE posts SET USERID=1 WHERE USERID=?";
+        jdbcTemplate.update(sql, user.getId());
+        sql = "UPDATE comments SET USERID=1 WHERE USERID=?";
+        jdbcTemplate.update(sql, user.getId());
+        sql = "UPDATE votes SET USERID=1 WHERE USERID=?";
+        jdbcTemplate.update(sql, user.getId());
+
+        sql = "DELETE FROM users WHERE email = ?";
         jdbcTemplate.update(sql, email);
     }
 
@@ -54,9 +64,7 @@ public class UserRepository {
         );
     }
 
-    public User findByEmail(String email)
-
-    {
+    public User findByEmail(String email) {
         String sql = "SELECT * FROM users WHERE email = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{email}, (resultSet, rowNum) ->
                 new User(
@@ -69,6 +77,7 @@ public class UserRepository {
                         resultSet.getString("profileInfo")
                 ));
     }
+
     public User findById(Long userId) {
         String sql = "SELECT * FROM users WHERE userId = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{userId}, (resultSet, rowNum) ->

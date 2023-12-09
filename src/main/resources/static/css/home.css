@@ -1,221 +1,258 @@
-/* UTILITIES */
-* {
-    margin: 0;
-    padding: 0;
+/*position of dropdown */
+.dropdown {
+    position: absolute;
+    display: inline-block;
+    margin-right: 80px;
+}
+
+
+/* set the size and position of button on web */
+.dropdown button {
+    background: #7756FF;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* provide css to background of list items */
+#list-items {
+    display: none;
+    position: absolute;
+    background-color: white;
+    width: 156.5px;
+    transform: translateX(-40%);
+    top: 100%;
+    border-top: none;
+}
+
+
+/* provide css to list items */
+#list-items a {
+    display: block;
+    font-size: 15px;
+    /* background-color: rgb(240, 144, 144); */
+    background-color:#262626;
+    color: #f9f9f9;
+    text-decoration: none;
+    padding: 10px;
+    text-align: center;
+}
+
+#list-items a, .list-item-button {
+    display: block;
+    font-size: 15px;
+    background-color: #262626;
+    color: #f9f9f9;
+    text-decoration: none;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    width: 100%;
     box-sizing: border-box;
 }
 
-body, html {
-    height: 200%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-
-a {
-    text-decoration: none;
-}
-
-li {
-    list-style: none;
-    align-items: center;
-}
-
-
-/* NAVBAR STYLING STARTS */
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: rgb(35, 45, 63);
-    color: #fff;
-    position: fixed;
-    width: 100%;
-}
-
-.nav-links a {
-    color: #fff;
-}
-
-/* LOGO */
-.logo {
-    font-size: 32px;
-}
-
-
-
-
-/* NAVBAR MENU & links*/
-.menu {
-    display: flex;
-    margin-bottom: 0;
-    gap: 5em;
-    font-size: 18px;
-}
-
-.menu li:hover {
-    background-color: #4c9e9e;
-    border-radius: 5px;
-    transition: 0.3s ease;
-}
-
-
-.menu li {
-    position: relative;
-    padding: 5px 14px;
-}
-
-
-
-
-
-/* DROPDOWN MENU */
-.services {
-    position: relative;
-}
-
-.dropdown {
-    background-color: rgb(35, 45, 63);
-    padding: 1em 0;
-    position: absolute; /*WITH RESPECT TO PARENT*/
-    display: none;
-    border-radius: 8px;
-    top: 35px;
-    right: 10px;
-}
-
-.dropdown li + li {
-    margin-top: 10px;
-}
-
-.dropdown li {
-    padding: 0.5em 1em;
-    width: 8em;
-    text-align: center;
-}
-
-.dropdown {
-    display: none;
-}
-
-.avatar {
-    position: relative;
-    top: -6px;
-    height: 40px;
-    width: 40px;
-    background: url('https://s.gravatar.com/avatar/353ffe54135685e371ae6add43986f92?d=mm') center/cover;
-    margin: 0 2rem;
-    border-radius: 50%;
-    border: none;
-    padding: none;
+.list-item-button {
     cursor: pointer;
 }
 
-/* Nav bar end */
-
-
-/* post begins */
-
-.container
-{
-    flex: 1;
+#content {
+    min-height: 100vh;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-bottom: 20px;
+    flex-direction: column;
+}
+
+.navbar {
+    background-color: #7756FF;
+    padding: 10px 20px;
+    text-align: right;
+    border-bottom: 1px solid rgb(205, 205, 205);
+    transition: 0.3s ease;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.navbar .nav-link, .navbar .nav-link i{
+    color: #f9f9f9;
+    font-weight: bold;
+    font-size: large;
+}
+
+.user-icon {
+    color: gold;
+    margin: 2px;
+}
+
+.navbar span
+{
+    position: relative;
+    margin-right: 20px;
+    color: #f9f9f9;
+}
+
+
+.show {
+    display: block;
+}
+
+.navbar:hover {
+    background-color: transparent;
+}
+
+.navbar:hover a {
+    color: black;
+}
+
+.navbar:hover .dropdown button{
+    background-color: transparent;
+}
+
+.navbar:hover i {
+    color: black;
+}
+.navbar:hover span {
+    color: black;
+}
+
+.container {
+    max-width: 600px !important;
+    margin: 20px auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+
+
+.form-post {
+    background-color: #fff;
+    border: 1px solid #e1e8ed;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
 }
 
 .post {
-    text-align: center;
+    background-color: #fff;
+    border: 1px solid #e1e8ed;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
 }
 
-.container.active{
-    height: 590px;
+.post-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
 }
 
-.container .wrapper{
-    width: 500px;
-    align-items: center;
-    position: fixed;
-    left: 40%;
-    bottom: 0;
-    padding: 10px;
+.post-body {
+    font-size: 1rem;
+    margin-bottom: 1rem;
 }
 
-
-.container .post{
-    transition: margin-left 0.18s ease;
-}
-.container.active .post{
-    margin-left: -500px;
-}
-.post header{
-    font-size: 22px;
-    font-weight: 600;
-    padding: 17px 0;
-    text-align: center;
-    border-bottom: 1px solid #bfbfbf;
-}
-
-.post form{
-    margin: 20px 25px;
-}
-
-
-form {
+.post-interactions, .post-footer {
     display: flex;
-    flex-direction: column;
+    /*justify-content: space-between;*/
+    margin-right: 3px;
     align-items: center;
-    justify-content: center;
-    width:50%;
+    font-size: 0.875rem;
+    color: #657786;
+}
+
+.votes span {
+    margin: 0 5px;
+}
+
+.votes button, .post-footer button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #1da1f2;
+}
+
+.btn-primary {
+    background-color: #1da1f2;
+    border-color: #1da1f2;
+}
+
+.post {
+    position: relative;
+}
+
+.post-date-top-right {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.8em;
+    color: #666;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8em;
+    color: #666;
+
 }
 
 
-form textarea{
-    resize: none;
-    font-size: 13px;
-    margin-top: 30px;
-    margin-bottom: 10px;
-    min-height: 100px;
+.post-footer i {
+    margin-right: 3px; /* Reduced space between icons */
+}
+
+/* Upvote arrow styles */
+.post-footer .fas.fa-arrow-up {
+    transition: 0.2s ease;
+}
+
+.post-footer .fas.fa-arrow-up:hover {
+    filter: brightness(150%);
+    color: green;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+
+/* Downvote arrow styles */
+.post-footer .fas.fa-arrow-down {
+    transition: 0.2s ease;
+}
+
+.post-footer .fas.fa-arrow-down:hover {
+    color: red;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+
+.post-body {
+    /* Initially limit the height */
+    max-height: 100px;
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.3s ease;
+}
+
+/* Fade effect */
+.post-body::after {
+    content: '';
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
     width: 100%;
-    border-radius: 7px;
-    text-indent: 0.5rem;
+    height: 50px;
+    background-image: linear-gradient(to bottom, transparent, white);
 }
 
-form :where(textarea, button){
-    width: 30%;
-    outline: none;
+/* Expanded state */
+.post-body.expanded {
+    max-height: none;
 }
 
-form textarea::placeholder{
-    color: #858585;
-}
-form textarea:focus::placeholder{
-    color: #b3b3b3;
-}
-
-/* button */
-form button{
-    height: 53px;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    color: #BCC0C4;
-    cursor: no-drop;
-    border-radius: 7px;
-    background: #e2e5e9;
-    transition: all 0.3s ease;
-}
-form textarea:valid ~ button{
-    color: #fff;
-    cursor: pointer;
-    background: #4599FF;
-}
-form textarea:valid ~ button:hover{
-    background: #1a81ff;
+/* Hide the fade effect when expanded */
+.post-body.expanded::after {
+    display: none;
 }
 

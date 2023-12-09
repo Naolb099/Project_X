@@ -1,44 +1,70 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Sign In</title>
+    <title>Log In</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/signup.css}">
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}"/>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <body>
+<!-- Display success message -->
+<div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+    <p th:text="${successMessage}"></p>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<!-- Display error message -->
+<div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <p th:text="${error}"></p>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
 <div class="container">
-    <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
-    <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
     <div class="text-center mb-4">
         <h2>ProjectX</h2>
-        <h6 class="text-muted">Sign in to see posts from your friends.</h6>
+        <h6 class="text-muted">Log In to see posts from your friends.</h6>
     </div>
     <div class="form-divider d-flex align-items-center">
         <div></div>
     </div>
-    <form th:action="@{/signin}" th:object="${user}" method="post">
+    <form th:action="@{/login}" th:object="${user}" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input type="email" th:field="*{email}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <small id="emailHelp" class="form-text text-muted"></small>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
             <input type="password" th:field="*{password}" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
-<!--        <div class="form-group form-check">-->
-<!--            <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
-<!--            <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
-<!--        </div>-->
-        <button type="submit" class="btn btn-primary">Sign In</button>
+        <button type="submit" class="btn btn-primary">Log In</button>
     </form>
 </div>
 <div class="text-center signup-footer">
     <p>Don't have an account? <a th:href="@{/signup}">Sign up</a></p>
 </div>
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 </html>

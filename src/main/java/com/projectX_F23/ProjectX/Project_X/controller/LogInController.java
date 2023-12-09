@@ -2,7 +2,9 @@ package com.projectX_F23.ProjectX.Project_X.controller;
 
 import com.projectX_F23.ProjectX.Project_X.model.User;
 import com.projectX_F23.ProjectX.Project_X.repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,20 +29,34 @@ public class LogInController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String loginUser(@ModelAttribute User user, Model model) {
-        User existingUser = userRepository.findByUsername(user.getUsername());
+    @PostMapping("/logout")
+    public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
+        session.invalidate();
+        redirectAttributes.addFlashAttribute("logoutMessage", "You have been successfully logged out.");
+        return "redirect:/login";
+    }
 
-        if (existingUser != null && existingUser.getPassword().equals(user.getPassword())) {
-            // Passwords match, user is authenticated
-            return "redirect:/dashboard";
-         } else {
-//            redirectAttrs.addFlashAttribute("error", "The error XYZ occurred.");
-            // Passwords do not match or user not found
-            model.addAttribute("error", "Invalid username or password");
-            // Return the same login page with the error message
-            model.addAttribute("user", new User()); // Add this line to ensure the form is populated with the user object
+    @PostMapping("/login")
+    public String loginUser(@ModelAttribute User user, Model model, RedirectAttributes redirectAttributes, HttpSession session) {
+        try {
+            User foundUser = userRepository.findByEmail(user.getEmail());
+
+            if (foundUser != null && foundUser.getPassword().equals(user.getPassword())) {
+                // Store the logged-in user in the session
+                session.setAttribute("loggedInUser", foundUser);
+
+                redirectAttributes.addFlashAttribute("successMessage", "Welcome " + foundUser.getUsername() + "!");
+                return "redirect:/home";
+            } else {
+                model.addAttribute("error", "Invalid email or password.");
+                return "login";
+            }
+        } catch (EmptyResultDataAccessException e) {
+            // Handle the case when no user is found with the given email
+            model.addAttribute("error", "Invalid email or password.");
             return "login";
         }
     }
+
 }
+

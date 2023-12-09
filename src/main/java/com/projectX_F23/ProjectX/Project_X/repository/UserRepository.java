@@ -17,11 +17,16 @@ public class UserRepository {
         jdbcTemplate.update(sql, user.getEmail(), user.getUsername(), user.getPassword(), user.getVerified(), user.getRole(), user.getProfileInfo());
     }
 
+    public boolean existsByUsername(String username) {
+        String sql = "SELECT COUNT(*) FROM users WHERE username = ?";
+        Integer count = jdbcTemplate.queryForObject(sql, new Object[]{username}, Integer.class);
+        return count != null && count > 0;
+    }
     public User findByUsername(String username) {
         String sql = "SELECT * FROM users WHERE username = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{username}, (resultSet, rowNum) ->
                 new User(
-                        resultSet.getLong("id"),
+                        resultSet.getLong("userId"),
                         resultSet.getString("email"),
                         resultSet.getString("username"),
                         resultSet.getString("password"),
@@ -30,6 +35,61 @@ public class UserRepository {
                         resultSet.getString("profileInfo")
                 ));
     }
-    // Other database operations methods
-    // ...
+
+    public void deleteByEmail(String email) {
+        User user = findByEmail(email);
+
+        // Update db tables to reflect the deleted user
+        String sql = "UPDATE posts SET USERID=1 WHERE USERID=?";
+        jdbcTemplate.update(sql, user.getId());
+        sql = "UPDATE comments SET USERID=1 WHERE USERID=?";
+        jdbcTemplate.update(sql, user.getId());
+        sql = "UPDATE votes SET USERID=1 WHERE USERID=?";
+        jdbcTemplate.update(sql, user.getId());
+
+        sql = "DELETE FROM users WHERE email = ?";
+        jdbcTemplate.update(sql, email);
+    }
+
+    public void update(User user) {
+        String sql = "UPDATE users SET username = ?, password = ?, verified = ?, role = ?, profileInfo = ? WHERE email = ?";
+        jdbcTemplate.update(
+                sql,
+                user.getUsername(),
+                user.getPassword(),
+                user.getVerified(),
+                user.getRole(),
+                user.getProfileInfo(),
+                user.getEmail()
+        );
+    }
+
+    public User findByEmail(String email) {
+        String sql = "SELECT * FROM users WHERE email = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{email}, (resultSet, rowNum) ->
+                new User(
+                        resultSet.getLong("userId"),
+                        resultSet.getString("email"),
+                        resultSet.getString("username"),
+                        resultSet.getString("password"),
+                        resultSet.getBoolean("verified"),
+                        resultSet.getString("role"),
+                        resultSet.getString("profileInfo")
+                ));
+    }
+
+    public User findById(Long userId) {
+        String sql = "SELECT * FROM users WHERE userId = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{userId}, (resultSet, rowNum) ->
+                new User(
+                        resultSet.getLong("userId"),
+                        resultSet.getString("email"),
+                        resultSet.getString("username"),
+                        resultSet.getString("password"),
+                        resultSet.getBoolean("verified"),
+                        resultSet.getString("role"),
+                        resultSet.getString("profileInfo")
+                ));
+    }
+
 }

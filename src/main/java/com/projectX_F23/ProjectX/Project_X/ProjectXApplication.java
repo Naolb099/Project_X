@@ -7,13 +7,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@RestController
+@Controller
 public class ProjectXApplication {
 
 	public static void main(String[] args) {
@@ -59,7 +60,7 @@ public class ProjectXApplication {
 
 	@GetMapping("/")
 	public String apiRoot(Model model) {
-		return "home";
+		return "redirect:/login";
 	}
 
 }

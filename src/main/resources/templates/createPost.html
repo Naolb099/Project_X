@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -9,7 +8,6 @@
     <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.8.1/css/all.css}" />
 </head>
 <body>
-
 <div id="content">
     <div class="navbar">
         <a href="#" th:href="@{/home}" class="nav-link"><i class="fas fa-home"></i> Home</a>
@@ -26,14 +24,13 @@
                 </form>
             </div>
             <span th:text="${loggedInUser != null ? loggedInUser.username : 'Guest'}"></span>
-
-
             </span>
         </div>
     </div>
+
     <div class="container" style="max-width: 600px">
         <div class="form-post">
-            <form id="postForm" th:action="@{/createPost}" method="post">
+            <form id="postForm" th:action="@{/post}" method="post">
                 <div class="form-group">
                     <input type="text" class="form-control" id="postTitle" name="title" placeholder="Enter post title" required>
                 </div>
@@ -46,31 +43,7 @@
             </form>
         </div>
     </div>
-
-    <div class="container">
-        <h4>Recent Posts</h4>
-        <div th:each="post : ${posts}">
-            <div class="post">
-                <div class="post-header">
-                    <span>Posted by <span th:text="${post.user.username}">Username</span></span>
-                    <!--                    <span th:text="${post.user != null and post.user.username != null ? post.user.username : 'Anonymous'}">Username</span>-->
-                    <div class="post-date-top-right" th:text="${#temporals.format(post.postDate, 'dd MMM yyyy HH:mm')}">Formatted Date and Time</div>
-                </div>
-
-                <div class="post-title" th:text="${post.title}">Post Title</div>
-                <div class="post-body" th:utext="${post.content}">Post Body</div>
-                <div class="post-footer" style="margin-right: 5px">
-                    <i class="fas fa-arrow-up" th:onclick="'upvote(' + ${post.postId} + ')'"></i>
-                    <span>10</span>
-                    <i class="fas fa-arrow-down" th:onclick="'downvote(' + ${post.postId} + ')'"></i>
-                    <span>2</span>
-                    <i class="fas fa-comment"></i>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <script th:src="@{/js/home.js}"></script>
-
 </body>
 </html>
